@@ -44,7 +44,7 @@
 \newtheorem{tmp_prop}	[tmp_satz]{Proposition}
 
 \theoremstyle{defstyle}
-\newtheorem{tmp_def}[tmp_satz]{Definition}	
+\newtheorem{tmp_def}{Definition}[section]
 
 \theoremstyle{bspstyle}
 \newtheorem{tmp_bsp}[tmp_satz]{Beispiel}
@@ -143,13 +143,12 @@
 \makeatletter
 \newenvironment{prooof}[1][\proofname]{
 	\par
-	\pushQED{\qed}%
 	\normalfont \topsep6\p@\@plus6\p@\relax
 	\trivlist
 	\item[\hskip\labelsep
 		\bfseries #1\@addpunct{:}]~%\newline\ignorespaces
 }{
-	\popQED\endtrivlist\@endpefalse
+	\endtrivlist\@endpefalse
 	\noindent\ignorespacesafterend
 }
 \makeatother
