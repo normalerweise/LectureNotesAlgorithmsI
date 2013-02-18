@@ -40,7 +40,7 @@
 \theoremstyle{thmstyle}
 \newtheorem{tmp_satz}{Satz}[section]
 \newtheorem{tmp_kor}	[tmp_satz]{Korollar}
-\newtheorem{tmp_lemma}[tmp_satz]{Lemma}
+\newtheorem{tmp_lemma}{Lemma}[section]
 \newtheorem{tmp_prop}	[tmp_satz]{Proposition}
 
 \theoremstyle{defstyle}
@@ -50,7 +50,7 @@
 \newtheorem{tmp_bsp}[tmp_satz]{Beispiel}
 \newtheorem*{tmp_bsp*}{Beispiel}
 
-\newenvironment{satz}[1][]{
+\newenvironment{term}[1][]{
 	\setlist			{rightmargin=\internalindent}
 	\setitemize		{leftmargin=\leftmargin}
 	\setenumerate	{leftmargin=\leftmargin+\internalindent}
@@ -75,7 +75,7 @@
 	\end{shaded}
 	\noindent\ignorespacesafterend
 }
-	
+
 \newenvironment{lemma}[1][]{
 	\setlist			{rightmargin=\internalindent}
 	\setitemize		{leftmargin=\leftmargin}
@@ -121,29 +121,27 @@
 	\fi
 }
 
-\newenvironment{beispiel}[1][]{	
+\newenvironment{example}[1][]{	
 	\pushQED{\bspendmark}
 	\needspace{4\baselineskip}
 	\begin{tmp_bsp}[#1]
 }{
-	\popQED
 	\end{tmp_bsp}
 	\noindent\ignorespacesafterend
 }
 
-\newenvironment{beispiel*}[1][]{	
+\newenvironment{example*}[1][]{	
 	\pushQED{\bspendmark}
 	\needspace{4\baselineskip}
 	\begin{tmp_bsp*}[#1]
 }{
-	\popQED
 	\end{tmp_bsp*}
 	\noindent\ignorespacesafterend
 }
 	
-\renewcommand*\proofname{Beweis}
+\renewcommand*\proofname{Proof}
 \makeatletter
-\newenvironment{beweis}[1][\proofname]{
+\newenvironment{prooof}[1][\proofname]{
 	\par
 	\pushQED{\qed}%
 	\normalfont \topsep6\p@\@plus6\p@\relax
@@ -173,7 +171,7 @@
 \newcommand{\bthickness}{1pt}
 \newcommand{\blength}{4*\bthickness}
 \newsavebox{\chapdescbox}
-\newenvironment{beschreibung}
+\newenvironment{descr}
 {\begin{center}\begin{lrbox}{\chapdescbox}\begin{minipage}{0.9\textwidth}}
 {\end{minipage}\end{lrbox}
 \begin{tikzpicture}
