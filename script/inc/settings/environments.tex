@@ -1,0 +1,192 @@
+\definecolor{def_color}					{HTML}{194D6C}
+\definecolor{def_shade_color}		{HTML}{DFE9EF}
+\definecolor{thm_color}					{HTML}{2F2512}
+\definecolor{thm_shade_color}		{HTML}{FFF7D4}	
+
+\newlength{\internalindent}
+\setlength{\internalindent}		% defines how much text and lists are intended
+	{.5cm}
+	
+\newtheoremstyle{thmstyle}
+	{\internalindent}
+	{\internalindent}{
+		\addtolength{\leftskip}	{\internalindent}					 
+		\addtolength{\rightskip}{\internalindent}
+	}
+	{0pt}{}{}
+	{\newline}
+	{\textcolor{thm_color}{\textbf{#1} #2} \quad  \textbf{#3}}
+	
+\newtheoremstyle{defstyle}
+	{\internalindent}
+	{\internalindent}{
+		\addtolength{\leftskip}	{\internalindent}					 
+		\addtolength{\rightskip}{\internalindent}
+	}
+	{0pt}{}{}
+	{\newline}
+	{\textcolor{def_color}{\textbf{#1} #2} \quad  \textbf{#3}}
+	
+\newtheoremstyle{bspstyle}
+	{\internalindent}
+	{\internalindent}{
+		\addtolength{\leftskip}	{0pt}					 
+		\addtolength{\rightskip}{0pt}
+	}
+	{0pt}{}{}
+	{\newline}
+	{\textbf{#1} #2 \quad  \textit{#3}}
+	
+\theoremstyle{thmstyle}
+\newtheorem{tmp_satz}{Satz}[section]
+\newtheorem{tmp_kor}	[tmp_satz]{Korollar}
+\newtheorem{tmp_lemma}[tmp_satz]{Lemma}
+\newtheorem{tmp_prop}	[tmp_satz]{Proposition}
+
+\theoremstyle{defstyle}
+\newtheorem{tmp_def}[tmp_satz]{Definition}	
+
+\theoremstyle{bspstyle}
+\newtheorem{tmp_bsp}[tmp_satz]{Beispiel}
+\newtheorem*{tmp_bsp*}{Beispiel}
+
+\newenvironment{satz}[1][]{
+	\setlist			{rightmargin=\internalindent}
+	\setitemize		{leftmargin=\leftmargin}
+	\setenumerate	{leftmargin=\leftmargin+\internalindent}
+	\definecolor{shadecolor}{named}{thm_shade_color}
+	\needspace{4\baselineskip}
+	\begin{shaded}\begin{tmp_satz}[#1]
+}{
+	\end{tmp_satz}
+	\end{shaded}
+	\noindent\ignorespacesafterend
+}
+	
+\newenvironment{korollar}[1][]{
+	\setlist			{rightmargin=\internalindent}
+	\setitemize		{leftmargin=\leftmargin}
+	\setenumerate	{leftmargin=\leftmargin+\internalindent}
+	\definecolor{shadecolor}{named}{thm_shade_color}
+	\needspace{4\baselineskip}
+	\begin{shaded}\begin{tmp_kor}[#1]
+}{
+	\end{tmp_kor}
+	\end{shaded}
+	\noindent\ignorespacesafterend
+}
+	
+\newenvironment{lemma}[1][]{
+	\setlist			{rightmargin=\internalindent}
+	\setitemize		{leftmargin=\leftmargin}
+	\setenumerate	{leftmargin=\leftmargin+\internalindent}
+	\definecolor{shadecolor}{named}{thm_shade_color}	
+	\needspace{4\baselineskip}
+	\begin{shaded}\begin{tmp_lemma}[#1]
+}{
+	\end{tmp_lemma}
+	\end{shaded}
+	\noindent\ignorespacesafterend
+}
+	
+\newenvironment{proposition}[1][]{
+	\setlist			{rightmargin=\internalindent}
+	\setitemize		{leftmargin=\leftmargin}
+	\setenumerate	{leftmargin=\leftmargin+\internalindent}
+	\definecolor{shadecolor}{named}{thm_shade_color}
+	\needspace{4\baselineskip}
+	\begin{shaded}\begin{tmp_prop}[#1]
+}{
+	\end{tmp_prop}
+	\end{shaded}
+	\noindent\ignorespacesafterend
+}
+	
+\newenvironment{definition}[1][]{	
+	\setlist			{rightmargin=\internalindent}
+	\setitemize		{leftmargin=\leftmargin}
+	\setenumerate	{leftmargin=\leftmargin+\internalindent}
+	\definecolor{shadecolor}{named}{def_shade_color}
+	\needspace{4\baselineskip}
+	\begin{shaded}\begin{tmp_def}[#1]
+}{
+	\end{tmp_def}
+	\end{shaded}
+	\noindent\ignorespacesafterend
+}
+
+\DeclareRobustCommand{\bspendmark}{% defines end mark for examples
+	\ifmmode \quad\sslash
+	\else	\hbox{$\sslash$}
+	\fi
+}
+
+\newenvironment{beispiel}[1][]{	
+	\pushQED{\bspendmark}
+	\needspace{4\baselineskip}
+	\begin{tmp_bsp}[#1]
+}{
+	\popQED
+	\end{tmp_bsp}
+	\noindent\ignorespacesafterend
+}
+
+\newenvironment{beispiel*}[1][]{	
+	\pushQED{\bspendmark}
+	\needspace{4\baselineskip}
+	\begin{tmp_bsp*}[#1]
+}{
+	\popQED
+	\end{tmp_bsp*}
+	\noindent\ignorespacesafterend
+}
+	
+\renewcommand*\proofname{Beweis}
+\makeatletter
+\newenvironment{beweis}[1][\proofname]{
+	\par
+	\pushQED{\qed}%
+	\normalfont \topsep6\p@\@plus6\p@\relax
+	\trivlist
+	\item[\hskip\labelsep
+		\bfseries #1\@addpunct{:}]~%\newline\ignorespaces
+}{
+	\popQED\endtrivlist\@endpefalse
+	\noindent\ignorespacesafterend
+}
+\makeatother
+
+\newsavebox{\informationbox}
+\newenvironment{information}
+{\begin{center}\begin{lrbox}{\informationbox}\begin{minipage}{0.7\textwidth}\small}
+{\end{minipage}\end{lrbox}
+\begin{tikzpicture}
+
+\draw[fill] (-0.5*\wd\informationbox - 1cm, 0.1cm) circle (0.3cm);
+\draw[color=white] (-0.5*\wd\informationbox - 1cm, 0.1cm) node {\large\bfseries i};
+
+\draw (0,0) node {\usebox{\informationbox}};
+\end{tikzpicture}\end{center}
+}
+
+\newcommand{\boffset}{7pt}			% space the frame surrounds the text
+\newcommand{\bthickness}{1pt}
+\newcommand{\blength}{4*\bthickness}
+\newsavebox{\chapdescbox}
+\newenvironment{beschreibung}
+{\begin{center}\begin{lrbox}{\chapdescbox}\begin{minipage}{0.9\textwidth}}
+{\end{minipage}\end{lrbox}
+\begin{tikzpicture}
+	\draw[fill] (-0.5*\wd\chapdescbox - \boffset - \bthickness, \ht\chapdescbox + \boffset + \bthickness) 	rectangle
+							(-0.5*\wd\chapdescbox - \boffset							, \ht\chapdescbox + \boffset - \blength);
+	\draw[fill]	(-0.5*\wd\chapdescbox - \boffset - \bthickness, \ht\chapdescbox + \boffset + \bthickness) 	rectangle
+							(-0.5*\wd\chapdescbox - \boffset + \blength		, \ht\chapdescbox + \boffset);
+							
+	\draw[fill]	(0.5*\wd\chapdescbox + \boffset								, -\dp\chapdescbox - \boffset - \bthickness) 	rectangle
+							(0.5*\wd\chapdescbox + \boffset + \bthickness	, -\dp\chapdescbox - \boffset + \blength);
+	\draw[fill]	(0.5*\wd\chapdescbox + \boffset + \bthickness	, -\dp\chapdescbox - \boffset) 								rectangle
+							(0.5*\wd\chapdescbox + \boffset - \blength		, -\dp\chapdescbox - \boffset - \bthickness);
+	
+	\draw (0,0) node {\usebox{\chapdescbox}};
+\end{tikzpicture}\end{center}
+}

@@ -1,0 +1,121 @@
+% PREAMBLE
+% =========
+					
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}					% input encoding
+\usepackage[T1]{fontenc}							% use T1 fonts for font encoding
+\usepackage{amsfonts}									% math font
+\usepackage{newcent}									% use New Century Schoolbook
+\usepackage{fouriernc}								% math font for newcent
+\usepackage{dsfont}										% math font for number spaces etc.
+\usepackage{helvet}										% sans serif font
+\usepackage{inconsolata}							% font for typewriter style
+
+% general
+\usepackage{makeidx}
+\makeindex
+
+\usepackage{ifthen}
+\usepackage{letltxmacro}							% better support for redefining macros with optional arguments
+\usepackage{booktabs}									% nicer tables
+\usepackage{wrapfig}									% text around figures
+\usepackage{parskip}									% vertical space instead of indentation
+\usepackage{microtype}								% improved justification
+\usepackage{needspace}								% reserve space
+\usepackage{framed}										% shaded environments
+\setlength{\FrameSep}{0pt}						% correct colorbox width (package: framed)
+
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows}
+
+\usepackage{enumitem}
+\setenumerate[1]{label=\roman*)}			% roman numbered lists
+\setitemize			{leftmargin=*}
+\setenumerate		{leftmargin=*}
+
+
+\usepackage{chapterthumb}							% use chapter thumbs
+\setkomafont{chapterthumb}						% use small font for chapter thumbs
+	{\normalfont\sffamily}
+\renewcommand{\chapterthumbheight}		% make chapter thumbs thinner
+	{1em}
+	
+\setkomafont{chapterentry}						% no sans-serif but bold chapter entries in toc
+	{\normalfont\bfseries}
+\setkomafont{chapterentrypagenumber}	% no bold chapter page entry numbers in toc
+	{\normalfont}
+	
+\renewcommand{\footnoterule}{					% increase spacing below footnote line
+	\noindent\rule{0.4\textwidth}{.4pt}
+	\vspace{0.6em}}
+\deffootnote{1em}{1em}								% footnote in normal textsize
+	{\thefootnotemark\hspace{0.5em}}
+	
+\usepackage{scrpage2}
+\setkomafont{pageheadfoot}
+	{\normalfont\itshape}
+\pagestyle{scrheadings}								% switch to modified style
+
+\renewcommand{\chaptermark}[1]
+	{\markboth{\thechapter~#1~}{}}
+\renewcommand{\sectionmark}[1]
+	{\markright{\thesection\autodot~#1}}
+					
+\usepackage{titlesec}									% design chapter headings
+\titleformat{\chapter}[display]
+	{\normalfont\sffamily\Huge\bfseries\flushright\fontsize{70}{0}\selectfont}
+	{\thechapter}
+	{-0pt}{\Huge}
+\setkomafont{section}{\normalfont\Large\bfseries}
+\setkomafont{subsection}{\normalfont\large\bfseries}
+\titlespacing*{\chapter}{0pt}{0pt}{50pt}
+
+\ifthenelse{\equal{\useRoman}{1}}									% roman chapter numbering
+	{\renewcommand{\thechapter}{\Roman{chapter}}}{}
+					
+\clubpenalty 					= 10000					%
+\widowpenalty 				= 10000					% avoid widow and club lines
+\displaywidowpenalty 	= 10000					%
+
+\makeatletter
+\@beginparpenalty			=	10000					% avoid page breaks before lists
+\makeatother
+
+\definecolor{linkblue}{rgb}{0.0, 0.0, 0.3}
+\definecolor{citeblue}{rgb}{0.0, 0.0, 0.5}
+\usepackage[pdfstartpage				= 1,							% default opening start page 
+						pdfstartview				= FitB, 					% default opening zoom
+						pdftitle						= {\docTitel},		% document title
+						pdfauthor						= {\docAutor}, 		% document author
+						colorlinks					= true, 					% print links colored
+						bookmarks						= true, 					% use bookmarks
+						bookmarksopen				= true,						% open bookmarks by default
+						bookmarksnumbered		= true, 					% number bookmarks
+						linkcolor						= linkblue,					% color for links
+						citecolor						= citeblue,				% color for cite links
+						pdfdisplaydoctitle	= true						% display document title instead of file name
+					 ]{hyperref}
+
+% mathematical
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{stmaryrd}
+\usepackage{esint}										% provides \ointclockwise etc.
+\usepackage{mathtools}								% provides \xRightarrow[]{}, \mathclap, \shortintertext and \bigtimes
+
+\makeatletter																			% alternate closed root symbol
+\ifthenelse{\equal{\usroptsqrt}{1}}{%
+\let\oldr@@t\r@@t
+\def\r@@t#1#2{%
+\setbox0=\hbox{$\oldr@@t#1{#2\,}$}\dimen0=\ht0
+\advance\dimen0-0.2\ht0
+\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+{\box0\lower0.65pt\box2}}
+\LetLtxMacro{\oldsqrt}{\sqrt}
+\renewcommand*{\sqrt}[2][\ ]{\oldsqrt[#1]{#2}}}{}
+\makeatother

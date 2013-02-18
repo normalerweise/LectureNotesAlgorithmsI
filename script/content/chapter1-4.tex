@@ -1,0 +1,32 @@
+\section{Verfügbare Makros}\index{Makros}\label{sec:makros}
+
+Diese Vorlage bietet standardmäßig bereits viele vordefinierte Makros und Umgebungen. Die Definitionen der Makros werden in der Datei \verb|inc/settings/abbreviations.tex| verwaltet. Je nach persönlichen Präferenzen und der Notwendigkeit kann diese vordefinierte Liste verändert oder erweitert werden.
+\begin{information}
+Makros sind ein wichtiges Werkzeug, um einen konsistenten Stil zu gewährleisten. Sie erleichtern zudem die Arbeit, da etwaige Änderungen nur einmalig und nicht mühsam im gesamten Dokument durchgeführt werden müssen.
+\end{information}
+
+An dieser Stelle wollen wir alle verfügbaren Makros kennenlernen:
+\begin{enumerate}
+	\item Die Befehle \verb|\A|, \ldots, \verb|\Z| liefern Buchstaben für Zahlenräume, lediglich \verb|\H|, \verb|\L|, \verb|\O| und \verb|\P| stehen nicht standardmäßig zur Verfügung. Der Befehl \verb|\I| ist ebenfalls andersweitig belegt (siehe \ref{makro:im}). Es existieren nur Großbuchstaben mit diesen Befehlen. Die Makros verwenden intern den Befehl \verb|\usrnscmd|\footnote{Siehe \ref{sec:einstellungen}, \ref{var:usrnscmd}.}, der standardmäßig auf \verb|\textbf| eingestellt ist.
+	\begin{align*}
+	\A, \B, \C, \D, \E, \F, \G, \J, \K, \M, \N, \Q, \R, \S, \T, \U, \V, \W, \X, \Y, \Z.
+	\end{align*}
+	Weit verbreitet sind auch die Befehle \verb|\mathbb| und \verb|\mathds| für doppelgestrichene Buchstaben. Historisch gesehen wurden diese aber nur eingeführt, da Fettschrift an der Tafel schwer umzusetzen war, weswegen diese Varianten eigentlich nicht verwendet werden sollten. Da sie dennoch sehr verbreitet sind werden sie unterstützt. Es wird empfohlen, in diesem Fall \verb|\mathds| zu verwenden, da die Doppelstriche an der korrekten Position sind und die Schriftzeichen die richtige Größe haben.
+	\item Analog liefert \verb|\sA|, \ldots, \verb|\sZ| kalligrafisch geschwungene Buchstaben. Auch hier gibt es nur Großbuchstaben, es existieren hierbei aber sogar alle Buchstaben. Intern verwendet wird der Befehl \verb|\mathcal|.
+	\begin{align*}
+	\sA, \sB, \sC, \sD, \sE, \sF, \sG, \sH, \sI, \sJ, \sK, \sL, \sM, \sN, \sO, \sP, \sQ, \sR, \sS, \sT, \sU, \sV, \sW, \sX, \sY, \sZ.
+	\end{align*}
+	\item Mit dem Befehl \verb|\deftxt{\ldots}| können definierte Begriffe hervorgehoben werden.\\
+	\verb|Wir nennen dies einen \deftxt{Begriff}| liefert:
+	\begin{align*}
+	\text{Wir nennen dies einen \deftxt{Begriff}}
+	\end{align*}
+	\item\label{makro:im} Für die imaginäre Einheit $\I$ existiert das Makro \verb|\I|.
+	\item Für das Differential $\dd$ in Integralen steht das Makro \verb|\dd| zur Verfügung.
+	\item Für das häufig verwendete $\e$ gibt es den Befehl \verb|\e|.
+	\item Mit \verb|\id| erhält man den Identitätsoperator $\id$.
+	\item Für die Indikatorfunktion kann \verb|\ind_A(x)| verwendet werden und liefert dann $\ind_A(x)$.
+	\item Eine Norm kann mit \verb|\norm{x}| geschrieben werden und liefert $\norm{x}$. Die Normstriche passen sich in der Größe automatisch an.
+	\item Der Realteil $\Re z$ und der Imaginärteil $\Im z$ komplexer Zahlen lassen sich mit \verb|\Re z| und \verb|\Im z| notieren, verhalten sich also genauso wie die gängigen Operatoren wie z. B. \verb|\sin x| für $\sin x$.
+	\item Für Notationen der Stochastik existieren \verb|\Var| für die Varianz $\Var$, \verb|\Cov| für die Kovarianz $\Cov$ und \verb|\Pois| für die Poisson-Verteilung $\Pois$.
+\end{enumerate}

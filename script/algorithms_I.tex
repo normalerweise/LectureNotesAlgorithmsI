@@ -1,0 +1,53 @@
+\input{inc/settings/settings}				% document specific settings
+
+\documentclass[a4paper, 						% paper size
+							 12pt, 								% font size
+							 BCOR = \usrBCOR,			% binding correction
+							 DIV=15, 							% used for typearea calculation
+							 headsepline,					% add head line to border calculation
+							 twoside, 						% two-sided document
+							 footnotes = multiple,% visually separate two consecutive footnotes
+							 toc = index,					% add index to table of contents
+							 numbers = auto,			% automatic placing of end dot in numbering
+							 pagesize							% used for flexibility
+							]{scrbook}						% KOMA book class
+							
+\input{inc/settings/preamble}				% general settings and packages
+\input{inc/settings/abbreviations}	% predefined macros
+\input{inc/settings/environments}		% predefined environments
+\input{inc/settings/hyphenation}		% custom hyphenation rules
+
+%\includeonly{}											% while writing your book, compile only what you need
+
+\begin{document}
+\raggedbottom
+\ifthenelse{\equal{\usrmatter}{1}}
+	{\frontmatter}{}
+\include{inc/titlepage}
+\newpage
+\include{inc/copyright}
+\newpage
+\tableofcontents
+\ifthenelse{\equal{\usrmatter}{1}}
+	{\mainmatter}{}
+\ifthenelse{\equal{\useThumbs}{1}}
+	{\ihead[\putchapterthumb]{\putchapterthumb}}{}
+	
+% ================================
+% include your document parts here
+% only use section-wise documents since include inserts new pages!
+\include{content/chapter1-1}
+	\include{content/chapter1-2}
+	\include{content/chapter1-3}
+	\include{content/chapter1-4}
+	\include{content/chapter1-5}
+\include{content/chapter2-1}
+% ================================
+
+\ifthenelse{\equal{\useThumbs}{1}}
+	{\ihead[]{}}{}
+\ifthenelse{\equal{\useIndex}{1}}{
+\clearpage
+\renewcommand{\indexname}{Index}
+\printindex}{}
+\end{document}

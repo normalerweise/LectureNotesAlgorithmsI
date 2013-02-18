@@ -1,0 +1,13 @@
+\chapter{Benutzung der Skriptvorlage}
+
+\begin{beschreibung}
+In diesem Kapitel wollen wir die vielfältigen Möglichkeiten, die von dieser Vorlage bereitgestellt werden, kennenlernen und uns so einen Eindruck über ihre Möglichkeiten verschaffen. Wir werden sehen, wie diese Vorlage korrekt eingestellt und gehandhabt werden kann, um schöne Ergebnisse zu erzielen.
+\end{beschreibung}
+
+\section{Installation}\index{Installation}
+
+Da man die Vorlage gegebenenfalls mehrfach verwenden möchte und "`Skriptvorlage"' ein eher weniger aussagekräftiger Projekttitel ist, sollte darauf verzichtet werden, direkt in die Vorlagedateien zu schreiben.
+
+Stattdessen sollte zunächst ein neues Projekt angelegt werden\footnote{Falls die verwendete Editor-Umgebung dieses Feature zur Verfügung stellt.}. In die Hauptdatei wird dann per "`Copy \& Paste"' der Inhalt der \verb|Skriptvorlage.tex| kopiert. Auf diese Weise legt man sich eine neue Kopie der Vorlage an und kann sie gleich entsprechend benennen. Die übrigen Dateien können dann einfach in das neue Verzeichnis kopiert werden. Nach diesen einfachen Schritten ist die Vorlage gewissermaßen "`installiert"' und als neues Projekt angelegt worden.
+
+Der Inhalt sollte nun kapitelweise (siehe \ref{subsec:modular}) in Teildokumente aufgeteilt werden, die im Ordner \verb|content/| untergebracht werden können. In der Hauptdatei muss dann an der entsprechenden, gekennzeichneten Stellen für jede Datei ein \verb|\include|-Befehl gesetzt werden, um die Datei einzubinden. Es gilt zu beachten, dass beim Einbinden einer neuen Datei stets eine neue (rechte) Seite begonnen wird\footnote{Da der Befehl \texttt{\textbackslash cleardoublepage} aufgerufen wird, werden insbesondere auch alle noch nicht ausgegebenen Figuren ausgegeben.}.

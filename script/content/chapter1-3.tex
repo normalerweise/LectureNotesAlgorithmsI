@@ -1,0 +1,16 @@
+\section{Einstellungen}\index{Einstellungen}\label{sec:einstellungen}
+
+In der Datei \verb|inc/settings/settings.tex| finden sich alle wichtigen Einstellungen, die von dieser Vorlage angeboten werden, um das Layout oder Verhalten zu bestimmen. Ungeübten \LaTeX-Anwendern wird empfohlen, nur diese Einstellungen zu variieren und für Änderungen innerhalb der Vorlage Hilfe zu konsultieren, um unerwünschte Effekte zu vermeiden. Manche Schalter nehmen lediglich die Werte \verb|0| und \verb|1| an\footnote{Tatsächlich kann man ihnen beliebige Werte zuweisen, lediglich der Wert \texttt{1} aktiviert den Schalter jedoch.}. Der Wert \verb|1| aktiviert, der Wert \verb|0| deaktiviert den entsprechenden Schalter.
+
+An dieser Stelle wollen wir im Detail auf die einzelnen Schalter und Optionen in der eben erwähnten Datei eingehen:
+\begin{enumerate}
+	\item \verb|\docAutor|, \verb|\docTitel|, \verb|\docUntertitel|, \verb|\docDozent|, \verb|\docJahr|, \verb|\docUniversitaet| -- mit diesen Befehlen wird die Ausgabe auf der Titelseite\footnote{In der Standarddatei für die Rechtshinweise werden diese Befehle ebenfalls verwendet.} gesteuert und automatisch angepasst.
+	\item \verb|\docTitelZitat|, \verb|\docTitelZitatName| -- diese beiden Befehle betreffen ebenfalls die Titelseite. Es kann ein Zitat angegeben werden, das standardmäßig unter dem Titel erscheint. Aufgrund der unterschiedlichen Formatierung wird der Name der zitierten Person getrennt gespeichert. Der Befehl darf jedoch auf keinen Fall gelöscht werden, sondern muss einfach mit einem leeren Inhalt definiert werden.
+	\item \verb|\useIndex| -- mit diesem Schalter kann festgelegt werden, ob ein Stichwortverzeichnis ausgegeben werden soll.
+	\item\label{var:usethumbs} \verb|\useThumbs| -- dieser Schalter aktiviert kleine Kästchen am rechten Seitenrand, die bei gedruckter Form helfen, bequem das richtige Kapitel aufzuschlagen. Es gilt jedoch zu beachten, dass nur wenige Drucker den Rand wirklich bedrucken können.
+	\item \verb|\useRoman| -- Mit dieser Einstellung werden Kapitel, die mit \verb|\chapter| eröffnet werden, mit römischen statt arabischen Ziffern nummeriert.
+	\item \verb|\usrBCOR| -- da beim Binden eines Buches Teile des inneren Randes augenscheinlich verschwinden wird die Bindekorrektur (BCOR, engl. \emph{binding correction}) eingeführt.
+	\item\label{var:usrmatter} \verb|\usrmatter| -- ist diese Option aktiviert, so werden die Seiten vor dem eigentlichen Inhalt des Buches separat nummeriert und in römischen Zahlen ausgegeben. Die Nummerierung beginnt ab dem eigentlichen Inhalt dann neu.
+	\item \verb|\usroptsqrt| -- mit diesem standardmäßig aktiviertem Schalter wird die Form des Wurzelsymbols angepasst, so dass ein schließender Strich eingefügt wird: $\sqrt{x}$ versus $\oldsqrt{x}$ % Anmerkung: Der Befehl \oldsqrt wird hier nur zur Demonstrationszwecken verwendet; von einer Anwendung im Dokument ist dringend abzuraten!
+	\item\label{var:usrnscmd} \verb|\usrnscmd| -- hier wird der Befehl eingestellt, der für die Zahlenraum-Makros \verb|\A|, \ldots, \verb|\Z| verwendet wird (siehe \ref{sec:makros}). Eine gängige Alternative ist \verb|\mathbb|, schöner wäre jedoch \verb|\mathds|. Als Standard wird eine simple Fettschrift gesetzt, da dies auch der traditionellen Form entspricht.
+\end{enumerate}

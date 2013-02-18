@@ -1,0 +1,37 @@
+\section{Verfügbare Umgebungen}\index{Umgebungen}
+
+Nachdem wir nun die Makros kennen, die von der Vorlage bereitgestellt werden, kommen wir zu den verfügbaren Umgebungen. Ihre konsequente Verwendung wird für einen typographisch guten Stil dringend empfohlen:
+\begin{enumerate}
+	\item Definitionen können mit der \verb|definition|-Umgebung erstellt werden.\\
+	\verb|\begin{definition} \ldots \end{definition}| liefert:
+	\begin{definition}
+	\ldots
+	\end{definition}
+	Die Nummerierung erfolgt automatisch entsprechend des aktuellen Kapitels. Alle Umgebungen teilen sich einen "`Zähler"', so dass jede Nummer einzigartig ist.
+	\item Für Sätze, Korollare, Lemmata und Propositionen gibt es entsprechende Umgebungen vermöge \verb|satz|, \verb|korollar|, \verb|lemma| und \verb|proposition|. Analog zu der \verb|definition|-Umgebung liefert dies beispielsweise:
+	\begin{satz}[Satz von \ldots]
+	\ldots
+	\end{satz}
+	\item Für Beispiele stehen die Umgebung \verb|beispiel| bzw. \verb|beispiel*| für unnummerierte Beispiele zur Verfügung:
+	\begin{beispiel}
+	\ldots
+	\end{beispiel}
+	Endet ein Beispiel beispielsweise in einer Liste oder in einer abgesetzten Gleichung, so kann mit \verb|\qedhere| der Endmarker manuell an die entsprechende Stelle gesetzt werden.
+\end{enumerate}
+All diese Umgebungen erlauben zudem einen optionalen Parameter in eckigen Klammern -- also z. B. \verb|\begin{satz}[Bezeichnung]| --, welcher für den Titel der Umgebung gewählt wird. Je nach Umgebung kann dies eine Bezeichnung des Theorems oder der zu definierende Begriff sein. Ein Beispiel hierfür wurde eben schon gezeigt.
+
+\begin{information}
+Die Umgebungen sichern sich mit Hilfe des \verb|needspace|-Pakets bereits Platz, dennoch kann es unter Umständen zu leichten Darstellungsfehlern kommen, bei denen oben oder unten der Leerraum zum farbigen Hintergrund fehlt. Dieser Fehler lässt sich bisher leider nur durch redaktionelle Eingriffe im Einzelfall beheben.
+\end{information}
+
+\begin{enumerate}[resume]
+	\item Für Beweise steht die \verb|beweis|-Umgebung zur Verfügung. Ihr Aussehen ist schlicht gehalten. Das \verb|\qed|-Symbol wird automatisch eingefügt; sollte der Beweis jedoch mit einer abgesetzten Gleichung enden, so sollte der Befehl \verb|\qedhere| innerhalb dieser Gleichung verwendet werden, um das Symbol korrekt zu positionieren.
+	\begin{beweis}
+	Hier steht ein Beweis.
+	\end{beweis}
+	\item Die Umgebung \verb|information| dient für informative Hinweise neben des eigentlichen Themas. So können hiermit interessante Ausblicke in andere Anwendungen, Fachgebiete oder auch in die Geschichte zu einem Thema gegeben werden.
+	\begin{information}
+	Diese Umgebung sollte gezielt eingesetzt werden, um den Lesestoff zwar aufzulockern, jedoch nicht vom eigentlichen Thema abzulenken. Der Inhalt sollte informativ, aber kurzgehalten sein.
+	\end{information}
+	\item Die \verb|\beschreibung|-Umgebung sollte zu Beginn eines jeden Kapitels -- also nach dem Aufruf des \verb|\chapter|-Befehls -- verwendet werden, um einen einheitlichen Stil im Buch zu erhalten (oder, andernfalls, gar nicht verwendet werden). Sie dient dazu, den Inhalt des kommenden Kapitels kurz zusammenzufassen und so einen Einblick in die bevorstehende Thematik zu gewähren. Ein Beispiel für diese Umgebung findet sich zu Beginn dieses Kapitels.
+\end{enumerate}

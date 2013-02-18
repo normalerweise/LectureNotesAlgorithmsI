@@ -1,0 +1,79 @@
+\chapter{Zum Schreiben eines Buches}
+
+\begin{beschreibung}
+Nachdem wir nun die spezifischen Grundlagen und Möglichkeiten der Vorlage kennen, wollen wir noch auf einige grundlegende Regeln eingehen, die man beim Verfassen eines Buches einhalten sollte. Ferner gehen wir darauf ein, wie ein großes Projekt richtig gehandhabt werden kann.
+\end{beschreibung}
+
+\section{Allgemeines}\index{Allgemeines}
+
+\subsection{Modularer Aufbau}\label{subsec:modular}
+
+Um die Übersicht über ein großes Projekt zu behalten ist es sinnvoll, dieses modular aufzubauen, also in Teildokumente zu splitten. Mit dieser Vorlage sollte dabei für jedes Kapitel (\verb|\section{}|) ein eigenes Dokument angelegt werden, wie es z. B. in diesem Beispielinhalt zu sehen ist, da der verwendete \verb|\include|-Befehl jede Datei auf eine neue Seite setzt.\\
+Neben typographischen Gründen erlaubt uns dies, ein für große Dokumente sehr nützliches \LaTeX-Feature -- \verb|\includeonly{}| -- zu nutzen. Um das Dokument nicht jedesmal komplett kompilieren zu müssen kann man \LaTeX\ nur die benötigten Teile kompilieren lassen; Seitenzahlen, Referenzen etc. gehen dabei aber nicht verloren. In der Hauptdatei des Projektes findet sich dazu der (standardmäßig auskommentierte) Befehl \verb|\includeonly{}|, in welchen man -- durch Kommata getrennt -- die Dateien angeben kann, die kompiliert werden sollen. In der finalen Version wird der Befehl dann einfach wieder auskommentiert.
+
+Sollte es nicht erwünscht sein, neue Unterkapitel auf neue Seiten zu platzieren, so müssen die Unterdateien in der Hauptdatei per \verb|\input| statt mit \verb|\include| eingebunden werden. Jedoch kann das \verb|\includeonly|-Feature dann nicht mehr genutzt werden, da es für \verb|\input| kein entsprechendes Äquivalent dazu gibt.
+
+\subsection{Stichwortverzeichnis}
+
+Um in einem großen Dokument Begriffe schnell nachschlagen zu können ist ein Stichwortverzeichnis eine gute Möglichkeit. Diese Vorlage kreiert standardmäßig auch ein solches, die Einträge müssen jedoch manuell angelegt werden. Dazu verwendet man den Befehl \verb|\index{}| \emph{unmittelbar} und \emph{ohne Leerzeichen} hinter dem jeweiligen Wort:
+\begin{verbatim}
+Dies ist ein Begriff\index{Begriff} und wir...
+\end{verbatim}
+Mehr zu diesem Thema kann man der Dokumentation des Paketes \verb|makeidx| entnehmen.
+
+\begin{information}
+Die Indizierung für das Stichwortverzeichnis sollte nicht schon während des Schreibens durchgeführt werden. Stattdessen sollte erst das gesamte Buch geschrieben und dann indiziert werden, da es während des Schreibens schwierig ist, abzusehen, welche Begriffe wichtig genug sind, um sie im Verzeichnis aufzulisten.
+\end{information}
+
+Sollte kein Stichwortverzeichnis erwünscht sein, so muss \verb|\useIndex| in den Einstellungen (also in der \verb|inc/settings.tex|) auf \verb|0| gesetzt werden.
+
+\subsection{Trennungsregeln}
+
+Ab und an kann es passieren, dass die Trennungsregeln, die \LaTeX\ mitliefert, versagen und ein Wort nicht korrekt umgebrochen wird (was z. B. in einer "`\verb|overfull \hbox|"'-Warnung resultieren kann). Um diesen Effekt auszugleichen wird bereits das Paket \verb|microtype| verwendet. Sollte auch dieses versagen, so sollte von manuellen Zeilenumbrüchen zunächst abgesehen werden. Stattdessen kann und sollte man besser eine Regel für dieses Wort in der Datei \verb|inc/settings/hyphenation.tex| angeben. Dies geschieht z. B. für das Wort "`Trennungsregel"' mit dem folgenden Eintrag:
+\begin{verbatim}
+\hyphenation{Trenn-ungs-re-gel}
+\end{verbatim}
+
+\subsection{Mathematischer Inhalt}
+
+Wir wollen hier nicht im Detail darauf eingehen, wie man mathematische Formeln in \LaTeX\ realisiert. Es gibt jedoch einige prinzipielle Dinge, die wir ansprechen wollen:
+\begin{enumerate}
+	\item Für abgesetzte Formeln sollte primär die \verb|align|-Umgebung (bzw. \verb|align*| für unnummerierte Gleichungen) verwendet werden. Die Umgebung \verb|eqnarray| und andere erzeugen inkosistente Abstände und sollten gemieden werden\footnote{Dieser und andere typische Fehler finden sich im \LaTeX-Sündenregister (siehe \ref{sub:links}).}.
+	\item Besonders lange Formeln, die nicht in eine Zeile passen, können mit der \verb|multline|- bzw. \verb|multline*|-Umgebung realisiert werden.
+	\item Diese Vorlage bindet das Paket \verb|mathtools| ein, welches einige zusätzliche Befehle bereitstellt. Erwähnenswert sind insbesondere:
+	\begin{enumerate}
+		\item \verb|\xRightarrow[]{}| für beschriftete Pfeile, die sich automatisch in der Länge anpassen. Der Befehl \verb|\xRightarrow[x]{y}| liefert so z. B. die Ausgabe $\xRightarrow[x]{y}$. Nähere Informationen können der Dokumentation entnommen werden.
+		\item Um mehrzeilige Formeln mit Text zu versehen, ohne dabei die Ausrichtung zu verlieren, können in \LaTeX\ standardmäßig mit dem Befehl \verb|\intertext{}| vorübergehend unterbrochen werden. Da dieser Befehl jedoch sehr große Abstände erzeugt kann bei Bedarf der nun verfügbare Befehl \verb|\shortintertext{}| verwendet werden, der kleinere vertikale Abstände erzeugt.
+		\item Bei -- zum Beispiel -- Summen mit langen Indexausdrücken schafft \verb|\mathclap| Abhilfe. Der Befehl sorgt dafür, dass das übergebene Argument für \LaTeX\ keine Breite einnimmt und lässt sich somit für schönere Positionierungen nutzen. Im folgenden Beispiel wurde der Befehl gleich zweimal verwendet:
+		\begin{align*}
+		a &= z + y + x + \sum_{\mathclap{i \leq j \leq n+1}} ij + \ldots\\
+		\quad &\stackrel{\mathclap{\text{ABC}}}{=} p\text{.}
+		\end{align*}
+		Das selbe Beispiel ohne die Verwendung des Befehls sieht wie folgt aus:
+		\begin{align*}
+		a &= z + y + x + \sum_{i \leq j \leq n+1} ij + \ldots\\
+		\quad &\stackrel{\text{ABC}}{=} p\text{.}
+		\end{align*}
+		In der zweiten Zeile beachte man die horizontale Position des Gleichheitszeichens im Vergleich zu dem aus der ersten Zeile.
+	\end{enumerate}
+\end{enumerate}
+
+\begin{information}
+Es lohnt sich in jedem Fall, die entsprechenden Paketdokumentationen zu lesen, um ihr jeweiliges Potenzial zu nutzen. Auch ein Blick in das bereits erwähnte \LaTeX-Sündenregister (siehe \ref{sub:links}) ist empfehlenswert.
+\end{information}
+
+Um das Aussehen mathematischer Formeln zu demonstrieren wollen wir hier ohne Angabe der Voraussetzungen die \deftxt{Formel von Cauchy} und die \deftxt{Residuenformel} angeben:
+\begin{align*}
+\frac{1}{2\pi \I}\ointctrclockwise_{\Gamma} \frac{f(z)}{z-a}~\dd z &= f(a) \quad\text{und}\quad \ointctrclockwise_{\Gamma} f(z)~\dd z = 2\pi\I \sum_{k=1}^N n(\Gamma, a_k) \operatorname{Res}_{a_k} f\text{.}
+\end{align*}
+Auch bei Formeln im Fließtext, wie zum Beispiel $a \in [0,1)$, kann man gut sehen, wie sich der speziell zur Fließtextschriftart passende mathematische Schriftsatz ins Schriftbild einfügt.
+
+\subsection{Nützliche Links}\label{sub:links}
+
+In der folgenden Liste finden sich hilfreiche und nützliche Links zu Dokumentationen  oder anderen Dokumenten, die es wert sind, gelesen zu werden:
+\begin{itemize}
+	\item \href{ftp://ftp.dante.de/tex-archive/info/german/l2tabu/l2tabu.pdf}{l2tabu.pdf} -- das \LaTeX-Sündenregister, das weiter oben schon erwähnt wurde. Es listet die gängigsten Todsünden und obsoleten Pakete auf und nennt dabei auch jeweils Alternativen.
+	\item \href{http://www.zvisionwelt.de/typokurz.pdf}{typokurz.pdf} -- eine Zusammenfassung grundlegender typografischer Regeln für besonders anspruchsvolle Autoren. Die Typografie beschäftigt sich insbesondere auch mit der Lesbarkeit von Texten und ist daher ein sehr nützliches Werkzeug.
+	\item \href{http://texblog.net/}{\TeX blog.net} -- der \TeX-Blog von Stefan Kottwitz, der auch das Buch "`\LaTeX\ -- Beginner's Guide"' geschrieben hat. Hier findet man wertvolle Informationen und Anleitungen rund um \TeX\ und \LaTeX.
+	\item \href{http://www.komascript.de}{KOMA-Script} -- die KOMA-Script-Klassen von Markus Kohm, die auch von dieser Vorlage verwendet werden, sind ein sehr umfangreiches und mächtiges Werkzeug im Umgang mit \LaTeX. Ein Studium ihrer Möglichkeiten ist insbesondere dann zu empfehlen, wenn mit diesen Klassen gearbeitet wird, um bestmögliche Ergebnisse zu erzielen.
+\end{itemize}
