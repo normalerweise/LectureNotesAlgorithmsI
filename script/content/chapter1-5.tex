@@ -9,13 +9,13 @@ Nachdem wir nun die Makros kennen, die von der Vorlage bereitgestellt werden, ko
 	\end{definition}
 	Die Nummerierung erfolgt automatisch entsprechend des aktuellen Kapitels. Alle Umgebungen teilen sich einen "`Zähler"', so dass jede Nummer einzigartig ist.
 	\item Für Sätze, Korollare, Lemmata und Propositionen gibt es entsprechende Umgebungen vermöge \verb|satz|, \verb|korollar|, \verb|lemma| und \verb|proposition|. Analog zu der \verb|definition|-Umgebung liefert dies beispielsweise:
-	\begin{satz}[Satz von \ldots]
+	\begin{term}[Satz von \ldots]
 	\ldots
-	\end{satz}
+	\end{term}
 	\item Für Beispiele stehen die Umgebung \verb|beispiel| bzw. \verb|beispiel*| für unnummerierte Beispiele zur Verfügung:
-	\begin{beispiel}
+	\begin{example}
 	\ldots
-	\end{beispiel}
+	\end{example}
 	Endet ein Beispiel beispielsweise in einer Liste oder in einer abgesetzten Gleichung, so kann mit \verb|\qedhere| der Endmarker manuell an die entsprechende Stelle gesetzt werden.
 \end{enumerate}
 All diese Umgebungen erlauben zudem einen optionalen Parameter in eckigen Klammern -- also z. B. \verb|\begin{satz}[Bezeichnung]| --, welcher für den Titel der Umgebung gewählt wird. Je nach Umgebung kann dies eine Bezeichnung des Theorems oder der zu definierende Begriff sein. Ein Beispiel hierfür wurde eben schon gezeigt.
@@ -26,9 +26,9 @@ Die Umgebungen sichern sich mit Hilfe des \verb|needspace|-Pakets bereits Platz,
 
 \begin{enumerate}[resume]
 	\item Für Beweise steht die \verb|beweis|-Umgebung zur Verfügung. Ihr Aussehen ist schlicht gehalten. Das \verb|\qed|-Symbol wird automatisch eingefügt; sollte der Beweis jedoch mit einer abgesetzten Gleichung enden, so sollte der Befehl \verb|\qedhere| innerhalb dieser Gleichung verwendet werden, um das Symbol korrekt zu positionieren.
-	\begin{beweis}
+	\begin{prooof}
 	Hier steht ein Beweis.
-	\end{beweis}
+	\end{prooof}
 	\item Die Umgebung \verb|information| dient für informative Hinweise neben des eigentlichen Themas. So können hiermit interessante Ausblicke in andere Anwendungen, Fachgebiete oder auch in die Geschichte zu einem Thema gegeben werden.
 	\begin{information}
 	Diese Umgebung sollte gezielt eingesetzt werden, um den Lesestoff zwar aufzulockern, jedoch nicht vom eigentlichen Thema abzulenken. Der Inhalt sollte informativ, aber kurzgehalten sein.
