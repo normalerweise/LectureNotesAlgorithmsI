@@ -4,7 +4,7 @@
     TODO
 \end{descr}
 
-\section{TODO}\index{TODO}
+
 \begin{definition}
     TODO
 \end{definition}
@@ -78,5 +78,44 @@ The equivalence classes of this relation $~c VxV$ are called strongly connected 
 \begin{information}
     We should know how the following terms are defined: reflexivity, symetry, transitivity.
 \end{information}
+
+Implementation: \\
+1. Adjacency Lists $V = {1...n}, E = {e_{1}...e_{t}}$ \\
+\includegraphics{diagrams/adjacency_list.png} \\
+2. Dynamically changing graphs: \\
+e.g. multi user databses: Nodes $\equiv$  transactions of user; Edges $\equiv$  waiting situations \\
+\includegraphics{diagrams/dynamically_changing_graphs.png} \\
+Graph is used to detect dead locks. Waiting arises when data are locked by a user that modifies these data. \\
+$U_{1}$ $write(d)$, $read(d')$ \\
+$U_{2}$ $read(d)$, $write(d')$
+
+\begin{definition}
+    An undirected graph is called a tree if it is connected and does not have simple cycles.\\
+    Let $G$ be a directed graph, $G=(V,E)$. A node $r$ is called root if every other node can be 
+    reached from $r$ via a directed path. \\
+    A directed graph is called a tree if it has a root and the underlying undirected graph is a tree. \\
+    Let $G$ be a directed graph. A node is called source if $g_{in}(v) = 0$. $v$ is called sink if $g_{out}(v) = 0$
+\end{definition}
+
+\begin{lemma}
+    NW: what was lemma 1.3? the next one was 1.4 in my notes
+\end{lemma}
+\begin{lemma}
+    If $G=(V,E)$ is a directed graph without directed cycles, then tere is always a source and sink.
+\end{lemma}
+We use this theorem to detect cycles
+
+\begin{prooof}[Proof: Source (sink analogously)]
+    Select an arbitrary node $v_{1}$. If $v_{1}$ is a source we are done. If it is not, then there must be an edge $e_{1}$
+    leading to it $v_{2} \xrightarrow{e_{1}} v_{1}$. \\
+    If $v_{2}$ is a source we are done. If not, there must be an edge $e_{2}$ leading to it
+    $v_{3}  \xrightarrow{e_{2}} v_{2} \xrightarrow{e_{1}} v_{1}$.
+    We continue this process. It must stop because there are only finitely many nodes and if a node would appear once more
+    on such a path, there would be a directed cycle.
+\end{prooof}
+
+
+
+
 
 

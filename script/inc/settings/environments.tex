@@ -38,19 +38,19 @@
 	{\textbf{#1} #2 \quad  \textit{#3}}
 	
 \theoremstyle{thmstyle}
-\newtheorem{tmp_satz}{Satz}[section]
-\newtheorem{tmp_kor}	[tmp_satz]{Korollar}
-\newtheorem{tmp_lemma}{Lemma}[section]
-\newtheorem{tmp_prop}	[tmp_satz]{Proposition}
+\newtheorem{tmp_satz}{Theorem}[chapter]
+\newtheorem{tmp_kor}{Korollar}[chapter]
+\newtheorem{tmp_lemma}{Lemma}[chapter]
+\newtheorem{tmp_prop}{Proposition}[chapter]
 
 \theoremstyle{defstyle}
-\newtheorem{tmp_def}{Definition}[section]
+\newtheorem{tmp_def}{Definition}[chapter]
 
 \theoremstyle{bspstyle}
-\newtheorem{tmp_bsp}[tmp_satz]{Beispiel}
+\newtheorem{tmp_bsp}{Beispiel}[chapter]
 \newtheorem*{tmp_bsp*}{Beispiel}
 
-\newenvironment{term}[1][]{
+\newenvironment{theorem}[1][]{
 	\setlist			{rightmargin=\internalindent}
 	\setitemize		{leftmargin=\leftmargin}
 	\setenumerate	{leftmargin=\leftmargin+\internalindent}
