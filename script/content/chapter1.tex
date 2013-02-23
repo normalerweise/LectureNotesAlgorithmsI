@@ -6,8 +6,32 @@
 
 
 \begin{definition}
-    TODO
+	An undirected graph is a pair G=(V, E) where V is a set of nodes and E is a set of edges, together with a function i: E $\rightarrow \gamma(v)$ such that 0 < $\mid i(e) \mid  \le $ 2.
+\\
+If u,v i(e) we call u,v endpoints of e. If V and E are a finite set we call G a finite graph. If i($e{_1}$) =  i($e{_2}$) we call  $e{_1}$, $e{_2}$ parallel edges.
+
+If $\mid i(e) \mid = 1$ we call e a loop. The degree of a node v is the number of edges for which v is an endpoint where loops a counted twice.
+Is the degree of v = 0 then we call v isolated.
 \end{definition}
+
+\begin{example*}
+    TODO: Graphic missing!
+\end{example*}
+
+\begin{lemma}
+    In a finite graph the number of nodes with odd degree is even.
+\end{lemma}
+
+
+\begin{prooof}
+    $\sum\limits_{i=1}^n degree(v{_i}) = 2* \mid E \mid$ \\
+This is because we start with a graph, where each node is isolated. Then we insert one edge after another.\\
+Case 1: i(e) = {x} then the degree of x is increased by 2\\
+Case 2: i(e) = {x, y} then the degree of x and y are increased by 1
+ 
+\end{prooof}
+
+
 \begin{definition}
     TODO
 \end{definition}
