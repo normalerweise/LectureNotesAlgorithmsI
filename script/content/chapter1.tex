@@ -27,13 +27,26 @@ Is the degree of v = 0 then we call v isolated.
     $\sum\limits_{i=1}^n degree(v{_i}) = 2* \mid E \mid$ \\
 This is because we start with a graph, where each node is isolated. Then we insert one edge after another.\\
 Case 1: i(e) = {x} then the degree of x is increased by 2\\
-Case 2: i(e) = {x, y} then the degree of x and y are increased by 1
- 
+Case 2: i(e) = {x, y} then the degree of x and y are increased by 1\\
+We asume that $v{_1}...v{_i}$ have an even degree and $v{_i+1}...v{_n}$ have odd degree.\\
+
+$\sum\limits_{k=1}^i degree(v{_k}) + \sum\limits_{k=i+1}^n degree(v{_k}) = 2 \mid E \mid$\\
+
+$\sum\limits_{k=1}^i degree(v{_k})$ is an even number\\
+
+$\sum\limits_{k=i+1}^n degree(v{_k})$ must be an even number and hence the number of nodes with odd degree must be even\\
+
+$ 2 \mid E \mid$ is an even number \\
+
 \end{prooof}
 
 
 \begin{definition}
-    TODO
+    If G=(V,E) is a graph and $v{_1}, v{_2} \in V$ with $i(e) = \{v1, v2\}$ then we say that $v{_1}, v{_2}$ are neighbours. A path in G is a sequence of edges $e{_1}, e{_2}, ...$ such that: \\
+\begin{enumerate}
+\item $e{_i}, e{_i+1}$ share an endpoint
+\item if $e{_i}$ is not a loop and neither the first nor the last edge. Then $e{_i}$ shares one endpoint with $e{_i-1}$ and the other with $e{_i+1}$ [MS: does this make sense? sounds strange!]
+\end{enumerate}
 \end{definition}
 \begin{definition}
     TODO
