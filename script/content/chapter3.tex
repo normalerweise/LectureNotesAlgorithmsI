@@ -1,5 +1,31 @@
-\chapter{TODO}
+\chapter{(Network) Flow Problems}
 
 \begin{descr}
     TODO
 \end{descr}
+
+\section{Network Flow Problems}\index{Network Flow Problems}
+\begin{example}
+Example: Oil field + transportation
+
+\end{example}
+
+\begin{definition}
+A network N consists of 
+\begin{enumerate}
+\item A finite directed graph $G=(V,E)$ without loops and parallel edges
+\item a function $c: E -> \mathbb{R}^{+}$, which assigns a capacity to each edge
+\item two designated nodes s and t, called \deftxt{source} and \deftxt{sink}
+\end{enumerate}
+Short: $N = (G, c, \{s, t\})$
+\end{definition}
+
+\begin{definition}
+Let $N = (G, c, \{s, t\})$ be a network. A flow function on N is a function $f: E -> \mathbb{R}$ such that 
+\begin{itemize}
+\item $ 0 \le f(e) \le c(e), \forall e \in E $
+\item $ \alpha(v) := \{e: endpoint of e is v\}, v \in V$ \\
+$\beta(v) := \{e: startpoint of e is v\}, v \in V$
+
+\end{itemize}
+\end{definition}
