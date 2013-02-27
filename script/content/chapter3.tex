@@ -14,18 +14,47 @@ Example: Oil field + transportation
 A network N consists of 
 \begin{enumerate}
 \item A finite directed graph $G=(V,E)$ without loops and parallel edges
-\item a function $c: E -> \mathbb{R}^{+}$, which assigns a capacity to each edge
+\item a function $c: E -> \mathds{R}^{+}$, which assigns a capacity to each edge
 \item two designated nodes s and t, called \deftxt{source} and \deftxt{sink}
 \end{enumerate}
 Short: $N = (G, c, \{s, t\})$
 \end{definition}
 
 \begin{definition}
-Let $N = (G, c, \{s, t\})$ be a network. A flow function on N is a function $f: E -> \mathbb{R}$ such that 
+Let $N = (G, c, \{s, t\})$ be a network. A flow function on N is a function $f: E -> \mathds{R}$ such that 
 \begin{itemize}
 \item $ 0 \le f(e) \le c(e), \forall e \in E $
-\item $ \alpha(v) := \{e: endpoint of e is v\}, v \in V$ \\
-$\beta(v) := \{e: startpoint of e is v\}, v \in V$
-
+\item $ \alpha(v) := \{e:$ endpoint of e is v $\}, v \in V$ \\
+$\beta(v) := \{e:$ startpoint of e is v $\}, v \in V$
 \end{itemize}
+For every $v \in V\backslash\{s, t\} $ \\
+$ \sum_{e \in \alpha(v)} f(e) = \sum_{e \in \beta(v)} f(e) $ \\
+This is called \deftxt{"conservation function"}. \\
+The \deftxt{total flow} of the flow function is given by $F = \sum_{e \in \alpha(t)} f(e) - \sum_{e \in \beta(t)} f(e) $
 \end{definition}
+
+\begin{example}
+\includegraphics{diagrams/Chapter3_Example1.jpg}
+\\Notion: $ 6 / 4 $ describes the capacity and the flow of an edge. In this example the capacity of the edge is 6 and the flow is 4.
+\end{example}
+
+Problem: \\
+Given an arbitrary network N, find a flow function f, where the total flow F is maximal. \\
+
+\begin{definition}
+Let N = $(G, c, \{s, t\})$ be a network. Let $S \subseteq V$ with s $\in S, t \notin S$ \\
+$\bar{S} = V \backslash S$ (i.e. $t \in \bar{S}$) \\
+$E_{S\bar{S}} = \{e:$ all edges with starting point in S and endpoint in $\bar{S} \}$ \\
+$E_{\bar{S}S} = \{e:$ all edges with start point in $\bar{S}$ and end point in S $\}$ \\
+$E_{S\bar{S}} \cup E_{\bar{S}S} $ is the \deftxt{cut} defined by S. \\
+The capacity of a cut defined by S: $c(S) = \sum_{e \in E_{\bar{S}S}}c(e)$
+\end{definition}
+
+\begin{lemma}
+Let $N =(G, c, \{s, t\})$ be a network, $f: E \rightarrow \mathds{R}$ be a flow function then for any $S \subseteq V$ with $s \in S, t \notin S$: $$F = \sum_{e \in E_{S\bar{S}}}f(e) - \sum_{e \in E_{\bar{S}S}} f(e)$$
+\end{lemma}
+
+\begin{lemma}
+For every flow function f with total flow F and any ser $S \subseteq V$, $s \in S$, $t \notin S$
+$$ F \le c(S) $$
+\end{lemma}
