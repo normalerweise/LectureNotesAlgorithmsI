@@ -151,6 +151,20 @@
 	\endtrivlist\@endpefalse
 	\noindent\ignorespacesafterend
 }
+
+\newenvironment{corollary}[1][]{
+	\setlist			{rightmargin=\internalindent}
+	\setitemize		{leftmargin=\leftmargin}
+	\setenumerate	{leftmargin=\leftmargin+\internalindent}
+	\definecolor{shadecolor}{named}{thm_shade_color}
+	\needspace{4\baselineskip}
+	\begin{shaded}\begin{tmp_kor}[#1]
+}{
+	\end{tmp_kor}
+	\end{shaded}
+	\noindent\ignorespacesafterend
+}
+
 \makeatother
 
 \newsavebox{\informationbox}
