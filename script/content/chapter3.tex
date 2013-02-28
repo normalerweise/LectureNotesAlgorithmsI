@@ -128,9 +128,9 @@ We use $e_4 e_3 e_2$ to improve the flow function as follows:
 \end{itemize}
 We chose the minimum from the values and add the value to the flow of forward egdes and substract it from backward egdes. The flows of the edges change as follows:
 \begin{itemize}
-\item $e_4  \xfrac{10}{7}$
-\item $e_2 \xfrac{10}{3}$
-\item $e_3 \xfrac{3}{0}$
+\item $e_4 = \xfrac{10}{7}$
+\item $e_2 = \xfrac{10}{3}$
+\item $e_3 = \xfrac{3}{0}$
 \end{itemize} 
 
 \begin{example}
@@ -172,6 +172,6 @@ The assumption is obviously true for step 1 because $f \equiv 0$ is a flow funct
 Step 4: \\
 Let $f$ be a flow function when we enter step 4. We have to show that after performing step 4, the newly calculated function $f$ is still a flow function. \\
 Let $f_{old}$ be the function with which we enter step 4 and $f_{new}$ the newly calculated one. $f_{old}$ is a flow function. Hence, 
-\[
-\]
+\[\sum_{e \in \alpha(v)} f_{old}(e) = \sum_{e \in \beta(v)}f_{old}(e); \forall v : v \neq s, v \neq t\]
+Let $s \rightarrow v_0 \rightarrow v_1 ... v_{f_{e-1}} \rightarrow v_{f_e} \rightarrow t$ be an augmenting path used in step 4. By definition of $\Delta f_{new}(e) < c(e)$ and $f_{new}(e) > 0$.
 \end{proof}
