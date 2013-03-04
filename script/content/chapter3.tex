@@ -191,3 +191,11 @@ The check:
 \end{enumerate}
 \end{enumerate}
 \end{proof}
+
+\begin{lemma}
+If the algorithm by Ford-Fulkerson terminates then the determined flow function has maximal total flow.
+\end{lemma}
+
+\begin{proof}
+If the algorithm terminates, then it does so in step 3. That means we started labeling but did not reach $t$. Let $S$ be the set of nodes that were marked in the last round. Then $s \in S$ and $t \notin S$. $\bar{S} = V \backslash S$. Let $x \xrightarrow{e} y$ be an edge in $E_{S\bar{S}}$, this means x is labelled, y is not labelled. So, we know that $f(e) = c(e)$ because otherwise we could have marked y.
+\end{proof}
