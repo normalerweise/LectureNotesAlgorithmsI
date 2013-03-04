@@ -173,5 +173,21 @@ Step 4: \\
 Let $f$ be a flow function when we enter step 4. We have to show that after performing step 4, the newly calculated function $f$ is still a flow function. \\
 Let $f_{old}$ be the function with which we enter step 4 and $f_{new}$ the newly calculated one. $f_{old}$ is a flow function. Hence, 
 \[\sum_{e \in \alpha(v)} f_{old}(e) = \sum_{e \in \beta(v)}f_{old}(e); \forall v : v \neq s, v \neq t\]
-Let $s \rightarrow v_0 \rightarrow v_1 ... v_{f_{e-1}} \rightarrow v_{f_e} \rightarrow t$ be an augmenting path used in step 4. By definition of $\Delta f_{new}(e) < c(e)$ and $f_{new}(e) > 0$.
+Let $s \rightarrow v_0 \rightarrow v_1 ... v_{f_{e-1}} \rightarrow v_{f_e} \rightarrow t$ be an augmenting path used in step 4. By definition of $\Delta f_{new}(e) < c(e)$ and $f_{new}(e) > 0$. \\
+For step 4: Let $s = v_0 \rightarrow ... \rightarrow v_2 = t$ be the path along which we achieved the marking. Only the flow value of the edges along this path is modified, so we have to check only the edges respectively nodes along this path. We have to check: 
+\begin{enumerate}
+\item $ 0 \le f_{new}(e) \le c(e) \forall e$: e edge on the path
+\item $\sum_{e \in \alpha(v)} f_{new}(e) = \sum_{e \in \beta(v)}f_{new}(e),  \forall v$, v on the path, $v \neq s, v \neg t$ 
+\end{enumerate}
+The check: 
+\begin{enumerate}
+\item 1 holds by the definition of $\Delta$
+\item Let $v_i, v_i \neq s, v_i \neq t$ be a node on the path:
+\begin{enumerate}
+\item $\xrightarrow{e_i} v_i \xrightarrow{e_{i+1}}, e_i \in \alpha(v_i), e_{i+1} \in \beta(v_i)$ for both edges $f_{new}$ is obtained from $f_{old}$ by adding $\Delta$, so 2 holds in this case
+\item $\xrightarrow{e_i} v_i \xleftarrow{e_{i+1}}, e_i, e_{i+1} \in \alpha(v_i)$. One contributes $\Delta$, the other contributes $-\Delta$, so 2 holds for $v_i$
+\item $\leftarrow v_i \leftarrow$ analogously
+\item $\leftarrow v_i \rightarrow$ analogously, too
+\end{enumerate}
+\end{enumerate}
 \end{proof}
