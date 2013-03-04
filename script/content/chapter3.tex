@@ -197,5 +197,14 @@ If the algorithm by Ford-Fulkerson terminates then the determined flow function 
 \end{lemma}
 
 \begin{proof}
-If the algorithm terminates, then it does so in step 3. That means we started labeling but did not reach $t$. Let $S$ be the set of nodes that were marked in the last round. Then $s \in S$ and $t \notin S$. $\bar{S} = V \backslash S$. Let $x \xrightarrow{e} y$ be an edge in $E_{S\bar{S}}$, this means x is labelled, y is not labelled. So, we know that $f(e) = c(e)$ because otherwise we could have marked y.
+If the algorithm terminates, then it does so in step 3. That means we started labeling but did not reach $t$. Let $S$ be the set of nodes that were marked in the last round. Then $s \in S$ and $t \notin S$. $\bar{S} = V \backslash S$. Let $x \xrightarrow{e} y$ be an edge in $E_{S\bar{S}}$, this means x is labelled, y is not labelled. So, we know that $f(e) = c(e)$ because otherwise we could have marked y.\\
+If $x \xrightarrow{e} y$ is an edge in $E_{\bar{S}S}$ ($x \in \bar{S}, y \in S$). So, $y$ is labelled and $x$ is not. Then we can conclude that $f(e) = 0$, otherwise we could have marked $e$. 
+\[F \stackrel{(3.1)}{=} \sum_{e \in E_{S\bar{S}}}f(e) - \underbrace{ \sum_{e \in E_{\bar{S}S}}f(e)}_{= 0} = \sum_{e \in E_{S\bar{S}}} c(e) = c(e) \]
+f is a flow function with maximal total flow. 
 \end{proof}
+
+\deftxt{Termination} \\
+
+\begin{lemma}
+If $c: E -> \N$ then the algorithm terminates.
+\end{lemma}
