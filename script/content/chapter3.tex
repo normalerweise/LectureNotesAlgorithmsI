@@ -221,7 +221,7 @@ The example with $c: E -> \R \backslash \Q$ is an example, for which we can appl
 \end{proposition}
 
 \begin{example}
-\includegraphics{diagrams/Chapter3_Example_4.jpg}} \\
+\includegraphics{diagrams/Chapter3_Example_4.jpg} \\
 Maximal total flow: $2 * 10^6$ \\
 Selecting the augmenthing paths: 
 \begin{itemize}
@@ -258,7 +258,7 @@ Let $G = (V,E)$ be the directed graph for the network and $f$ a flow function fo
 $E(i) = \{e$: e is an useful edge between some node in $V_{n-1}$ and $V_i \}$
 \end{definition}
 
-\begin{proof}
+\begin{example}
 \includegraphics{diagrams/Chapter3_Example5.jpg} \\
 Layers:
 \begin{itemize}
@@ -268,7 +268,7 @@ Layers:
 \item $V_3 = \{t \}$
 \end{itemize}
 \includegraphics{diagrams/Chapter3_Example5_Solution.jpg} \\
-\end{proof}
+\end{example}
 
 \begin{theorem}
 When the algorithm for layering stops in step 3, then the actual flow function has maximal total flow.
@@ -276,5 +276,6 @@ When the algorithm for layering stops in step 3, then the actual flow function h
 
 \begin{proof}
 Determine a set S with $F = c(S)$. What S? \\
-
+$ S = \bigcup_{i=0}^i V_j$, $\bar{S} = V \backslash S, s \in S, t \notin S$ \\ 
+For any edge $ u \xrightarrow{e} v$, $e \in E_{S\bar{S}}$, we know $f(e) = c(e)$ because otherwise T would not be $\emptyset$. And for any edge $u \xleftarrow{e} v \in E_{\bar{S}S}$ we know $f(e) = 0$ and continue as for lemma 3.5.
 \end{proof}
