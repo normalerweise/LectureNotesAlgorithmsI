@@ -208,3 +208,49 @@ f is a flow function with maximal total flow.
 \begin{lemma}
 If $c: E -> \N$ then the algorithm terminates.
 \end{lemma}
+
+\begin{proof}
+This holds because the algorithm starts with $f \equiv 0$ and the total flow $F$ is increased by $\Delta$ and $\Delta$ is a natural number as $c(e) \in \N \forall e$ and because $F \le c(s)$ for all $S$ with $s \in S, t \notin S$ i.e. F is bordered. \\
+What about $c: E -> \R$? 
+\includegraphics{diagrams/Chapter3_Proof_3_6.jpg} \\
+Turn the capacities into natural numbers, calculate the results and divide them later.
+\end{proof}
+
+\begin{proposition}
+The example with $c: E -> \R \backslash \Q$ is an example, for which we can apply the algorithm in a way that is does not terminate. 
+\end{proposition}
+
+\begin{example}
+\includegraphics{diagrams/Chapter3_Proof_3_6.jpg} \\
+Maximal total flow: $2 * 10^6$ \\
+Selecting the augmenthing paths: 
+\begin{itemize}
+\item $e_1 e_4$ 
+\item $e_2 e_5$
+\end{itemize}
+This would solve the problem within two steps, but... \\
+Choosing the following augmenting paths: 
+\begin{itemize}
+\item $e_1 e_3 e_5$ with $\Delta = 1$ and
+\item $e_2 e_3 e_4$ with $\Delta = 1$ 
+\end{itemize}
+would lead to $2*10^6$ rounds to solve the problem. 
+\end{example}
+
+\begin{theorem}
+If we use breadth-first-search when labelling and always select the shortest augmenting pathe, then the algorithm terminates and uses $O(|V|^3 * |E|)$ steps for any $c:E -> \R$ (where it is assumed that any real number can be manipulated in one step).
+\end{theorem}
+
+\begin{definition}
+Let e be an edge between u and v with flow value $f(e)$. e is called \deftxt{useful} from u to v if 
+\begin{enumerate}
+\item $ u \xrightarrow{e} v$ and $f(e) < c(e)$
+\item $u \leftarrow v$ and $f(e) > 0 $
+\end{enumerate}
+Let $G = (V,E)$ be the directed graph for the network and $f$ a flow function for the network. A \deftxt{layering} for the network is defined as follows: 
+\begin{enumerate}
+\item $V_0 = \{s\}, i \leftarrow 0$
+\item $ T := \{ v \in V, v \notin V_j, j \le i$ and there is an useful edge from a node in V to v $\}$
+\item ..
+\end{enumerate}
+\end{definition}
