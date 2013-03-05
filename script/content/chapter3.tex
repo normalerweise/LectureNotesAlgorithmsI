@@ -221,7 +221,7 @@ The example with $c: E -> \R \backslash \Q$ is an example, for which we can appl
 \end{proposition}
 
 \begin{example}
-\includegraphics{diagrams/Chapter3_Proof_3_6.jpg} \\
+\includegraphics{diagrams/Chapter3_Example_4.jpg}} \\
 Maximal total flow: $2 * 10^6$ \\
 Selecting the augmenthing paths: 
 \begin{itemize}
@@ -251,6 +251,30 @@ Let $G = (V,E)$ be the directed graph for the network and $f$ a flow function fo
 \begin{enumerate}
 \item $V_0 = \{s\}, i \leftarrow 0$
 \item $ T := \{ v \in V, v \notin V_j, j \le i$ and there is an useful edge from a node in V to v $\}$
-\item ..
+\item If $ T = \emptyset$ then the actual flow function has maximal total flow and the algorithm stops. 
+\item If $t \in T$ then put $l := i+1, V_l = \{t\}$ and stop the algorithm.
+\item $V_{i+1} := T, i \leftarrow i+1$ and go to step 2
 \end{enumerate}
+$E(i) = \{e$: e is an useful edge between some node in $V_{n-1}$ and $V_i \}$
 \end{definition}
+
+\begin{proof}
+\includegraphics{diagrams/Chapter3_Example5.jpg} \\
+Layers:
+\begin{itemize}
+\item $V_0 = \{s\}$
+\item $V_1 = \{a, c \}$
+\item $V_2 = \{b, d \}$
+\item $V_3 = \{t \}$
+\end{itemize}
+\includegraphics{diagrams/Chapter3_Example5_Solution.jpg} \\
+\end{proof}
+
+\begin{theorem}
+When the algorithm for layering stops in step 3, then the actual flow function has maximal total flow.
+\end{theorem}
+
+\begin{proof}
+Determine a set S with $F = c(S)$. What S? \\
+
+\end{proof}
