@@ -279,3 +279,35 @@ Determine a set S with $F = c(S)$. What S? \\
 $ S = \bigcup_{i=0}^i V_j$, $\bar{S} = V \backslash S, s \in S, t \notin S$ \\ 
 For any edge $ u \xrightarrow{e} v$, $e \in E_{S\bar{S}}$, we know $f(e) = c(e)$ because otherwise T would not be $\emptyset$. And for any edge $u \xleftarrow{e} v \in E_{\bar{S}S}$ we know $f(e) = 0$ and continue as for lemma 3.5.
 \end{proof}
+
+\begin{definition}
+Associate capacities $\bar{c}$ to the edges in $E(i)$. Let c be an edge in $E(i)$, $ u \xrightarrow{e} v$ 
+\begin{enumerate}
+\item if $ u \in V_{i-1}, v \in V_i$, then $\bar{c}(e) := c(e) - f(e)$
+\item $u \in V_{i-1}, v \in V_i, u \xleftarrow{e} v$, then $\bar{c}(e) = f(e)$
+\end{enumerate}
+Remark: \\
+$c(e) > 0 $ in both cases as only useful edges are considered in $E(i)$ \\ \\
+
+In the new network we look for a flow function $\bar{f}$ such that on \underline{any} path from s to t 
+\[s - v_1 - v_2 - ... - t, v_j \in V_j, e_j \in E_j\]
+there is at least one edge e with $\bar{f}(e) = c(e)$. \\
+Given such a function $\bar{f}$ (see handout: Denic's algorithm) we modify the original flow function $f_{old}$ as follows:
+\begin{enumerate}
+\item if $u \xrightarrow{e} v$ with $u \in V_{i-1}, v \in V_i$ then $f_{new}(e) := f_{old}(e) + \bar{f}(e)$
+\item if $u \xleftarrow{e} v$ with $u \in V_{i-1}, v \in V_i$ then $f_{new}(e) := f_{old}(e) - \bar{f}(e) $
+\end{enumerate}
+\underline{Algorithm of Denic:} \\
+\begin{enumerate}
+\item Initialize with a flow function f, e.g. $f(e) \equiv 0 \forall e \in E$
+\item Construct a layering with respect of f (remember: halt twice)
+\item Determine $\bar{f}$
+\item From f and $\bar{f}$ determine the new flow function
+\item Go to step 2
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+%\includegraphics{diagrams/Chapter3_Example5_Solution.jpg} \\
+
+\end{example}
