@@ -64,12 +64,12 @@ We add all these equations up. Left hand side: $F$ remains. Right hand side: Let
 \begin{enumerate}
 \item $x, y \in S$, then the value $f(e)$ does not occur in the summation
 \item $x, y \in \bar{S}$, then $f(e)$ occurs one time positive in the summation, namely for y \\ f(e) occurs one time negative in the summation, namely for x 
-\item $x \in S; y \in \bar{S}$, f(e) occurs positive for y and nowhere else and $e \in E_{S\bar{S}}$
-\item $x \in \bar{S}; y \in S$, then $f(e)$ occurs negative for x and nowhere else and $e \in E_{\bar{S}S}$
+\item $x \in S; y \in \bar{S}$, f(e) occurs positive for y and nowhere else and $e \in E_{S\bar{S}}$  \label{xSySbar}
+\item $x \in \bar{S}; y \in S$, then $f(e)$ occurs negative for x and nowhere else and $e \in E_{\bar{S}S}$ \label{xSbaryS}
 \end{enumerate}
 This leads to the following equation:
 \[F = \sum_{e \in E_{S\bar{S}}}f(e) - \sum_{e \in E_{\bar{S}S}} f(e) \]
-Only case 3 are 4 contribute.
+Only case \ref{xSySbar} and \ref{xSbaryS} contribute.
 \end{proof}
 
 \begin{lemma}
