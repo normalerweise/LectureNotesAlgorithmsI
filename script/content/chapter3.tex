@@ -308,6 +308,25 @@ Given such a function $\bar{f}$ (see handout: Denic's algorithm) we modify the o
 \end{definition}
 
 \begin{example}
-%\includegraphics{diagrams/Chapter3_Example5_Solution.jpg} \\
-
+\includegraphics{diagrams/Chapter3_Example6_V1.jpg} \\
+Given the example above the total flow of the network is $F=3$. We will proceed with the first layering as follows: \\
+\includegraphics{diagrams/Chapter3_Example_6_Layering1.jpg} \\ 
+The nodes $x, z$ disappeared while layering. \\
+Determine $\bar{f}$: there are two paths from s to t, find $\bar{f}$ for each of them that saturates at least one edge on the path. The lower path yields a flow function that transports one unit from s to t. The upper path yields a flow function that transports four units from s to t. \\
+\includegraphics{diagrams/Chapter3_Example6_V2.jpg} \\
+After determining $\bar{f}$ we have to update the flows on our graph and gain a new total flow $F=8$. \\
+\underline{Second layering:} \\
+\includegraphics{diagrams/Chapter3_Example_6_Layering2.jpg} \\ 
+There is only one path from s to t. A flow function $\bar{f}$ that saturates at least one edge is the one that sends one unit along this path. \\
+\includegraphics{diagrams/Chapter3_Example6_V3.jpg} \\
+We update again the flows of the used edges and the total flow increases by one, so we have: $F=9$. \\
+\underline{Third layering} \\
+$V_0 = \{s\}$ can not be continued as there are no more useful edges from $V_0$.
 \end{example}
+
+\begin{lemma}
+Let N be a network with flow function f. $\bar{f}$ is the flow function of the layered network. Then 
+\begin{enumerate}
+\item the new calculated function f is a flow function and
+\item the new total flow is obtained by adding the old total flow and $\bar{F}$($F_{old} + \bar{F} = F_{new}$).
+\end{lemma}
