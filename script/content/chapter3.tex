@@ -330,3 +330,46 @@ Let N be a network with flow function f. $\bar{f}$ is the flow function of the l
 \item the new calculated function f is a flow function and
 \item the new total flow is obtained by adding the old total flow and $\bar{F}$($F_{old} + \bar{F} = F_{new}$).
 \end{lemma}
+
+\begin{proof}
+For i) we have to show that $0 \le f_{new}(e) \le c(e) \forall e \in E$ and that the flow condition holds for every node. \\
+\begin{itemize}
+\item Show $0 \le f_{new}(e) \le c(e)$:
+\begin{enumerate}
+\item Oberservation: $\forall e \notin \bigcup E(i)$ nothing has changed 
+\item Let $e \in E(i)$, that is $u \xrightarrow{e} v, u \in V_{i-1}, v \in V_i$ and e is useful. 
+\begin{itemize}
+\item Case 1: \\ $u \xrightarrow{e} v$ \\ 
+\[ \bar{f}(e) \le \bar{c}(e) \overset{Def.}{=} c(e) -f(e)$ \] 
+\[ f_{new}(e) = f(e) + \bar{f}(e) \le f(e) - \bar{f}(e) = c(e) \] M: Bitte prüft mal jemand den Teil mit f(e) - f(e)! 
+\item Case 2: \\ analogously
+\end{itemize}
+\end{enumerate}
+\item Show $0 \le f_{new}(e) \forall e \in E$:
+\begin{enumerate}
+\item Oberservation: all edges $\notin \bigcup E(i)$ are not affected
+\item Let $e \in E(i), u \xirghtarrow{e} v, u \in V_{i-1}, v \in V_i$ \\
+\begin{itemize}
+\item Case 1: $u \xrightarrow{e} v$  
+\[ f_{new}(e) = f_{old}(e) + \bar{f}(e) \re 0 \]
+\item Case2: $u \xleftarrow{ } v$
+\[ f_{new}(e) = f_{old}(e) - \bar{f}(e) \re f_{old}(e) - \bar{c}(e) \overset{Def. \bar{c}}{=} 0 \]
+\end{itemize}
+\end{enumerate}
+
+\underline{Flow condition:} \\
+\begin{enumerate}
+\item Oberservation: Nodes that do not appear in a layer are unaffected
+\includegraphics{diagrams/Chapter3_Example_6_Layering1.jpg} \\ 
+\item $\bar{f}$ is a flow function in the layered network. 
+\[ a) \sum_{e \in E \cup B}\bar{f}(e) = \sum_{e \in D \cup R}\bar{f}(e)\]
+Because $f_{old}$ is a flow function, we know that \\
+b) $\sum_{e \in E \cup Q \cup R}f_{old}(e) = \sum_{e \in B \cup F \cup D}f_{old}(e)$ (original direction of edges) \\
+For $f_{new}$ we get 
+\[\sum_{e \in  \cup P \cup R} f_{new}(e) = \sum_{e \in E}f_{new}(e) + \sum_{e \in Q}f_{new}(e) + \sum_{e \in R}f_{new}(e)\]
+\[= \sum_{e \in E}(f_{old}(e)  + \bar{f}(e)) + \sum_{e \in Q}f_{old}(e) + \sum_{e \in R}(f_{old}(e) - \bar{f}(e))\]
+\[\sum_{e \in B \cup P \cup D}f_{new}(e) = \sum_{e \in B}f_{new}(e) + \sum_{e \in P}f_{new}(e) + \sum_{e \in D}f_{new}(e)\]
+\[= \sum_{e \in B}(f_{old}(e) + \bar{f}(e)) + \sum_{e \in D}(f_{old}(e) + \bar{f}(e)) + \sum_{e \in P}f_{old}(e)\]
+Because of a) the $\bar{f}$ terms are compensated and because of b) the $f_{old}$ termas are compensated.
+\end{enumerate}
+\end{proof}
