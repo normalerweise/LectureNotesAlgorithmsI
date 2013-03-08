@@ -329,6 +329,7 @@ Let N be a network with flow function f. $\bar{f}$ is the flow function of the l
 \begin{enumerate}
 \item the new calculated function f is a flow function and
 \item the new total flow is obtained by adding the old total flow and $\bar{F}$($F_{old} + \bar{F} = F_{new}$).
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
@@ -340,7 +341,7 @@ For i) we have to show that $0 \le f_{new}(e) \le c(e) \forall e \in E$ and that
 \item Let $e \in E(i)$, that is $u \xrightarrow{e} v, u \in V_{i-1}, v \in V_i$ and e is useful. 
 \begin{itemize}
 \item Case 1: \\ $u \xrightarrow{e} v$ \\ 
-\[ \bar{f}(e) \le \bar{c}(e) \overset{Def.}{=} c(e) -f(e)$ \] 
+\[ \bar{f}(e) \le \bar{c}(e) \overset{Def.}{=} c(e) -f(e) \] 
 \[ f_{new}(e) = f(e) + \bar{f}(e) \le f(e) - \bar{f}(e) = c(e) \] M: Bitte prüft mal jemand den Teil mit f(e) - f(e)! 
 \item Case 2: \\ analogously
 \end{itemize}
@@ -348,19 +349,20 @@ For i) we have to show that $0 \le f_{new}(e) \le c(e) \forall e \in E$ and that
 \item Show $0 \le f_{new}(e) \forall e \in E$:
 \begin{enumerate}
 \item Oberservation: all edges $\notin \bigcup E(i)$ are not affected
-\item Let $e \in E(i), u \xirghtarrow{e} v, u \in V_{i-1}, v \in V_i$ \\
+\item Let $e \in E(i), u \xrightarrow{e} v, u \in V_{i-1}, v \in V_i$ \\
 \begin{itemize}
 \item Case 1: $u \xrightarrow{e} v$  
-\[ f_{new}(e) = f_{old}(e) + \bar{f}(e) \re 0 \]
+\[ f_{new}(e) = f_{old}(e) + \bar{f}(e) \geq 0 \]
 \item Case2: $u \xleftarrow{ } v$
-\[ f_{new}(e) = f_{old}(e) - \bar{f}(e) \re f_{old}(e) - \bar{c}(e) \overset{Def. \bar{c}}{=} 0 \]
+\[ f_{new}(e) = f_{old}(e) - \bar{f}(e) \geq f_{old}(e) - \bar{c}(e) \overset{Def. \bar{c}}{=} 0 \]
 \end{itemize}
 \end{enumerate}
+\end{itemize}
 
 \underline{Flow condition:} \\
 \begin{enumerate}
 \item Oberservation: Nodes that do not appear in a layer are unaffected
-\includegraphics{diagrams/Chapter3_Example_6_Layering1.jpg} \\ 
+\includegraphics[width=\textwidth]{diagrams/Chapter3_Proof8.jpg} \\
 \item $\bar{f}$ is a flow function in the layered network. 
 \[ a) \sum_{e \in E \cup B}\bar{f}(e) = \sum_{e \in D \cup R}\bar{f}(e)\]
 Because $f_{old}$ is a flow function, we know that \\
