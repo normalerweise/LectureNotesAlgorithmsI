@@ -15,7 +15,7 @@ Is the degree of v = 0 then we call v isolated.
 \end{definition}
 
 \begin{example*}
-    TODO: Graphic missing!
+\includegraphics{diagrams/Chapter1_Example1.jpg} \\
 \end{example*}
 
 \begin{lemma}
@@ -48,12 +48,39 @@ $ 2 \mid E \mid$ is an even number \\
 \item if $e{_i}$ is not a loop and neither the first nor the last edge. Then $e{_i}$ shares one endpoint with $e{_i-1}$ and the other with $e{_i+1}$ [MS: does this make sense? sounds strange!]
 \end{enumerate}
 \end{definition}
+
+\begin{example*}
+TODO: Graphic missing\\
+\end{example*}
+
+A finite graph is graphically represented by: $v{_0}$ --- $v{_1}$ --- $v{_2}$ --- ... --- $v{_i}$\\
+$v{_0}$ is called start point and $v{_i}$ is called end point. The length of the path $e{_1}$ ... $e{_i}$  is $i$.\\
+\\
+A cycle (circle) is a path where the end point coincide with the start point.\\
+A path is called simple if every node in $V$ occures at most once.\\
+A cycle of length $\not = 2$ is called simple if every node except of the start/end node occurs at most once. A cycle of length 2 ($e{_1}$, $e{_2}$) is called simple if $e{_1} /not = e{_2}$ and if each node except for the start/end node occurs at most once.
+
+\begin{example*}
+TODO: Graphic missing\\
+\end{example*}
+
+A Graph is connected if for every pair of nodes ($u$, $v$) there is a path between $u$ and $v$.\\
+
+An infinite Graph has finite and infinite paths. Every path between two nodes is finite. The graph is connected. There are infinitely paths.\\
+e.G. $e{_1}$ (finite)\\
+or $e{_1}$, $e{_2}$\\
+...\\
+and there is also an infite path $e{_1}$, $e{_2}$, $e{_2}$, $e{_2}$, $e{_2}$, $e{_2}$, ...\\
+
+
 \begin{definition}
-    TODO
+    Let $G(V,E)$ be a connected graph $a \in V$ is called a seperation point (articulation point) if there are nodes $v, w$ such that every path connecting $v$ and $w$ visits $a$. If $G$ has such a point $G$ is called [word missing - MS]\\
+    An edge is called bridge if there exist nodes $v$, $w$ such that every path connecting $v$ and $w$ contains this edge.
 \end{definition}
-\begin{lemma}
-    TODO
-\end{lemma}
+
+\begin{example*}
+Real-Life examples where seperation points are important are in computer networks or the information distribution (flow of information) within a company. So a seperation point can be regarded as a kind of coordinator between $a$ and $b$.
+\end{example*}
 
 \begin{definition}
     Let $G = (V,E)$ be a graph without loops. If there exists $V_{1}, V_{2} \leq V$ and $V_{1} \cup V_{2} = V$
