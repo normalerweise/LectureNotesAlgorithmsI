@@ -378,3 +378,52 @@ For $f_{new}$ we get
 Because of a) the $\bar{f}$ terms are compensated and because of b) the $f_{old}$ termas are compensated.
 \end{enumerate}
 \end{proof}
+
+\begin{lemma}
+Let $l_k$ be the index of the last layer (the one which contains t) in the k th layering step. Then $l_{k+1} > l_k$.
+\end{lemma}
+
+\begin{proof}
+When we reached the (k+1)-layering (where we assume that it's not the last layering), then there is a part in the layered network $s = v_0 \xrightarrow{e_1} v_1 \xrightarrow{e_2} ... \xrightarrow{e_{l_{k+1}}} v_{l_{k+1}} = t$, $v_i \in V_i^{k+1}$ (i th layer in the (k+1)-layering). \\
+
+\underline{case 1:} \\
+All nodes of this path appeared already in the k-th layering step. $v_i \in \bigcup_{j=1}^{l_k} V_j^{(k)}$, $i = 0, ..., l_{k+1}$.
+\begin{itemize}
+\item \underline{Claim:} if $v_a \in V_b^{(b)}$ then $a \ge b$ \\ 
+Proof by induction on a 
+\item \underline{Ing stduction:} $a = 0$, $a = v_0 \in V_0^{(k)} = b a \ge b$
+\item \underline{Induction assumption:} let $v_a \in V_b^{(k)}$ then $a \ge b$
+\item \underline{Induction step:} $a \rightarrow a +1$, so let $v_a \in V_b^{(b)}$ 
+\end{itemize} 
+
+Let $v_{a+1} = V_c^{(k)}$, show that $a+1 \ge c$.
+
+\begin{enumerate}
+\item $c \le b +1$ \\
+$v_{a+1} \in V_c^{(k)}$, by induction assumption $a \ge b$ then $a+1 \ge b +1 = c$
+\item $c > b +1 $ \\
+\[V_b^{(k)}  V_{b+1}^{(k)} V_c^{(k)}\]
+This would mean that the edge $l_{a+1}$, that is useful for (k+1)layering was not used in the k-th layering, but it was already useful at that time, hence this case can not happen. \\
+In particular we know:
+\[t = v_{l_{k+1}} \in V_{l_k}^{(k)}, hence l_{k+1} \ge l_k\]
+The equality symbol in $l_{k+1} \ge l_k$ can not occur because otherwise the whole path $v_0 \rightarrow v_1 ... v_{l_{k+1}}$ would have existed in the k-th layering. But when we determine the function$\bar{f}$ we dit it in a way that at least one edge e of the path is saturated. This edge e is no longer useful for the next layering. \\
+\end{enumerate}
+\underline{case 2:} \\
+$\rightarrow$ Not all $v_i$ are contained in the case layering. Proof is analogously to case 1.
+\end{proof}
+
+\begin{corollary}
+The repeated part of Dimic's algorithm 
+\begin{enumerate}
+\item Initialize f, e.g. $f \equiv 0$
+\item Determine a layering
+\item Determine $\bar{f}$
+\item Calculate $f = f_{old} + \bar{f}$
+\item Go to step 1
+\end{enumerate}
+is performed at most $|V| -1$ times.
+\end{corollary}
+
+\begin{proof}
+As $l_k < l_{k+1}$ and each layer contains at least one node.
+\end{proof}
