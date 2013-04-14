@@ -238,7 +238,7 @@ would lead to $2*10^6$ rounds to solve the problem.
 \end{example}
 
 \begin{theorem}
-If we use breadth-first-search when labelling and always select the shortest augmenting pathe, then the algorithm terminates and uses $O(|V|^3 * |E|)$ steps for any $c:E -> \R$ (where it is assumed that any real number can be manipulated in one step).
+If we use breadth-first-search when labelling and always select the shortest augmenting path, then the algorithm terminates and uses $O(|V|^3 * |E|)$ steps for any $c:E -> \R$ (where it is assumed that any real number can be manipulated in one step).
 \end{theorem}
 
 \begin{definition}
@@ -250,7 +250,7 @@ Let e be an edge between u and v with flow value $f(e)$. e is called \deftxt{use
 Let $G = (V,E)$ be the directed graph for the network and $f$ a flow function for the network. A \deftxt{layering} for the network is defined as follows: 
 \begin{enumerate}
 \item $V_0 = \{s\}, i \leftarrow 0$
-\item $ T := \{ v \in V, v \notin V_j, j \le i$ and there is an useful edge from a node in V to v $\}$
+\item $ T := \{ v \in V, v \notin V_j, j \le i$ and there is an useful edge from a node in $V_{i}$ to $v$ $\}$
 \item If $ T = \emptyset$ then the actual flow function has maximal total flow and the algorithm stops. 
 \item If $t \in T$ then put $l := i+1, V_l = \{t\}$ and stop the algorithm.
 \item $V_{i+1} := T, i \leftarrow i+1$ and go to step 2
@@ -284,10 +284,10 @@ For any edge $ u \xrightarrow{e} v$, $e \in E_{S\bar{S}}$, we know $f(e) = c(e)$
 Associate capacities $\bar{c}$ to the edges in $E(i)$. Let c be an edge in $E(i)$, $ u \xrightarrow{e} v$ 
 \begin{enumerate}
 \item if $ u \in V_{i-1}, v \in V_i$, then $\bar{c}(e) := c(e) - f(e)$
-\item $u \in V_{i-1}, v \in V_i, u \xleftarrow{e} v$, then $\bar{c}(e) = f(e)$
+\item $u \in V_{i-1}, v \in V_i, u \xleftarrow{e} v$, then $\bar{c}(e) := f(e)$
 \end{enumerate}
 Remark: \\
-$c(e) > 0 $ in both cases as only useful edges are considered in $E(i)$ \\ \\
+$\bar{c}(e) > 0 $ in both cases as only useful edges are considered in $E(i)$ \\ \\
 
 In the new network we look for a flow function $\bar{f}$ such that on \underline{any} path from s to t 
 \[s - v_1 - v_2 - ... - t, v_j \in V_j, e_j \in E_j\]

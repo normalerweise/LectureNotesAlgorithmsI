@@ -30,8 +30,6 @@
 *.vrb
 *.xdy
 *.tdo
-<<<<<<< HEAD
 *.DS_Store
-=======
 .DS_Store
->>>>>>> 65cc5ea2bc6172db9e5f114d596ef18d16aa7413
+
