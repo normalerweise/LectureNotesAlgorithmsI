@@ -163,6 +163,8 @@ The next steps or paths would be:
 The application of this paths leads to a new flow: $F = 14$.
 \end{example}
 
+\subsection{The Algorithm of Ford Fulkerson}
+See handout for a description of the algorithm.
 \begin{lemma}
 When executing a step in the algorithm, the actual function f is a flow function.
 \end{lemma}
@@ -237,17 +239,21 @@ Choosing the following augmenting paths:
 would lead to $2*10^6$ rounds to solve the problem. 
 \end{example}
 
+\subsection{The Edmonds-Karp Algorithm}
+An algorithm which improves Ford Fulkerson by finding the shortest augmenting path and therefore reducing the runtime bound.
 \begin{theorem}
 If we use breadth-first-search when labelling and always select the shortest augmenting path, then the algorithm terminates and uses $O(|V|^3 * |E|)$ steps for any $c:E -> \R$ (where it is assumed that any real number can be manipulated in one step).
 \end{theorem}
 
+\subsection{The Algorithm of Dinic}
 \begin{definition}
 Let e be an edge between u and v with flow value $f(e)$. e is called \deftxt{useful} from u to v if 
 \begin{enumerate}
 \item $ u \xrightarrow{e} v$ and $f(e) < c(e)$
 \item $u \leftarrow v$ and $f(e) > 0 $
 \end{enumerate}
-Let $G = (V,E)$ be the directed graph for the network and $f$ a flow function for the network. A \deftxt{layering} for the network is defined as follows: 
+Let $G = (V,E)$ be the directed graph for the network and $f$ a flow function for the network. \\
+A \deftxt{layering} for the network is defined as follows: 
 \begin{enumerate}
 \item $V_0 = \{s\}, i \leftarrow 0$
 \item $ T := \{ v \in V, v \notin V_j, j \le i$ and there is an useful edge from a node in $V_{i}$ to $v$ $\}$
@@ -292,12 +298,12 @@ $\bar{c}(e) > 0 $ in both cases as only useful edges are considered in $E(i)$ \\
 In the new network we look for a flow function $\bar{f}$ such that on \underline{any} path from s to t 
 \[s - v_1 - v_2 - ... - t, v_j \in V_j, e_j \in E_j\]
 there is at least one edge e with $\bar{f}(e) = c(e)$. \\
-Given such a function $\bar{f}$ (see handout: Denic's algorithm) we modify the original flow function $f_{old}$ as follows:
+Given such a function $\bar{f}$ (see handout: Dinic's algorithm) we modify the original flow function $f_{old}$ as follows:
 \begin{enumerate}
 \item if $u \xrightarrow{e} v$ with $u \in V_{i-1}, v \in V_i$ then $f_{new}(e) := f_{old}(e) + \bar{f}(e)$
 \item if $u \xleftarrow{e} v$ with $u \in V_{i-1}, v \in V_i$ then $f_{new}(e) := f_{old}(e) - \bar{f}(e) $
 \end{enumerate}
-\underline{Algorithm of Denic:} \\
+\underline{Algorithm of Dinic:} \\
 \begin{enumerate}
 \item Initialize with a flow function f, e.g. $f(e) \equiv 0 \forall e \in E$
 \item Construct a layering with respect of f (remember: halt twice)
