@@ -1,0 +1,52 @@
+\chapter*{ Appendix 4: Application of general matching}
+
+\section{Two processor scheduling}\index{Two processor scheduling}
+
+Given:\\
+\begin{enumerate}
+  \item Two identical agents/processors
+  \item Collection of n jobs or taskstogether with a directed acyclic graph with n nodes which correspond to the jobs, that describe the preceedence among the jobs.
+\end{enumerate}
+
+
+\begin{example}
+2 Graphics missing
+
+\end{example}
+
+How can the jobs be scheduled on the two processors such that the jobs are completed as quickly as possible?
+
+\textbf{Solution}:\\
+using matching!\\
+\underline{But:}\\
+for three processors the problem is NP-Complete.\\
+
+To solve the two processors problem we proceed as follows. We construct a graph $G*$ thathas the same nodes as $G$ and there is an edge {x,y} in $G*$ if and only if there is no path from x to y in $G$ and no path from y to x in $G$.
+
+\underline{1. Observation:}\\
+if we have a schedule we can obtain a matching. If the schedule is optimal the matching is of maximal cardinality.
+
+\underline{2. Interessting:}\\
+We can use matching of maximal cardinality to produce a schedule that is optimal.\\
+
+Let S be a set of nodes with indegree 0. Let $M*$ be a matching of max. cardinality for $G*$. Apply the following rules repeatly:\\
+\begin{enumerate}
+  \item If there is an unmatched node in S then schedule it. Remove it from G.
+  \item If there is a pair of jobs in S that are unmatched in $M*$then we schedule this pair in the output and delete the two nodes (corresponding to the jobs) in G.
+\end{enumerate}
+
+If neither rule 1 nor rule 2 applies and there are still jobs left to be scheduled then we know that S contains only nodes thatare matched
+and for every node in S its partner ($M*$) is not in S.\\
+
+$J{_1} \in S$ ------$M*$------
+$J'{_1} \notin S$\\
+
+$J{_2} \in S$ ------$M*$------
+$J'{_2} \notin S$\\
+
+Observation:\\
+$\not\exists$ path $J_{1}$ to $J_{2}$ 
+
+
+
+
