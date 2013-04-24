@@ -168,3 +168,49 @@ For edges that correspond to forward edges (of type $e{_1}$) we may raise the fl
 For edges that correspond to backward edges (of type $e{_1}$) we may reduce the flow.
 
 \end{example}
+
+
+
+\begin{lemma}
+Let f be  flow function with total flow $F=w$ and let f be cost minimal. Let p be an augmenting path that is cost minimal then the resulting flow f' constructed from f and p is cost minimal for $w+\Delta$ ($\Delta$ from the augmenting path).
+\end{lemma}
+
+\section{Networks with upper and lower bounds}
+
+we associate with each edge e a lower bound $b(e)$ and request for the flow function additionally that:\\
+$b(e) <= f(e)$\\
+A flow function obeying this additional constraint is called \underline{legal flow function}.
+
+\begin{example}
+Graphic of no legal flow missing
+\end{example}
+
+To answer the question if there is a legal flow for a network with lower/upper bounds we proceed on follows. Construct the Graph $\Bar{G} = (\Bar{V},\Bar{E})$.
+
+\begin{enumerate}
+  \item $\Bar{V} = V \cup \{\Bar{s}, \Bar{t}\}$
+  \item for every node $v \in V$ introduce an edge e from v to $\Bar{t}$.\\
+  $\Bar{c}(e) = \sum\limits_{e \in \beta (v)} b(e)$\\
+  $\Bar{b}(e) = 0$
+  \item for every node $v \in V$ introduce an edge e from $\Bar{s}$ to v.\\
+  $\Bar{c}(e) = \sum\limits_{e \in \alpha (v)} b(e)$\\
+  $\Bar{b}(e) = 0$
+  \item The edges in E remain but with new bunds:\\
+  $\Bar{c}(e) = c(e) - b(e)$\\
+  $\Bar{b}(e) = 0$
+  \item Introduce edges from $s \overset{e}\rightarrow t$, $t \overset{e'}\rightarrow s$ with:\\
+  $\Bar{c}(e) = \Bar{c}(e') = \infty$\\
+  $\Bar{b}(e) = \Bar{b}(e') = 0$
+\end{enumerate}
+
+Bar{E} consists of the edges in E plus the newly introduced edges.
+
+
+\begin{lemma}
+The original network with upper and lower bounds has a legal flow if and only if the maximum flow of the auiliary network saturates all edges emanating from $\Bar{s}$.
+\end{lemma}
+
+
+\textbf{Hint:}\\
+Let $Bar{f}$ be a flow function for the associated network with maximal total flow then $f(e) = Bar{f}(e) + b(e)$ is a legal flow function ($e \in E$).
+
