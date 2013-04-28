@@ -1,0 +1,22 @@
+digraph Gprime {
+	ratio="0.5";
+	fontsize="45";
+	s -> x1 [weight="1.4", label=" 1"];
+	s -> x2 [weight="1.4", label=" 1"];
+	s -> x3 [weight="1.4", label=" 1"];
+	s -> x4 [weight="1.4", label=" 1"];
+	s -> x5 [weight="1.4", label=" 1"];
+	x1 -> y1 [weight="1.4", label=" 1"];
+	x1 -> y3 [weight="1.4", label=" 1"];
+	x2 -> y1 [weight="1.4", label=" 1"];
+	x2 -> y4 [weight="1.4", label=" 1"];
+	x3 -> y2 [weight="1.4", label=" 1"];
+	x3 -> y4 [weight="1.4", label=" 1"];
+	x4 -> y3 [weight="1.4", label=" 1"];
+	x5 -> y2 [weight="1.4", label=" 1"];
+	x5 -> y3 [weight="1.4", label=" 1"];
+	y1 -> t [weight="1.4", label=" 1"];
+	y2 -> t [weight="1.4", label=" 1"];
+	y3 -> t [weight="1.4", label=" 1"];
+	y4 -> t [weight="1.4", label=" 1"];
+}

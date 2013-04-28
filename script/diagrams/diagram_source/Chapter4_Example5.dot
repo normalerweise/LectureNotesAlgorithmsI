@@ -1,0 +1,34 @@
+digraph G{
+	ratio="1";
+	fontsize="45";
+	subgraph cluster_xij {
+   		"xi*";
+   		"xj*";
+   		label="A";
+    	graph[style=dotted];
+ 	}
+ 	subgraph cluster_ylk {
+   		"yl*";
+   		"yk*";
+   		label=<&Gamma;(A)>;
+    	graph[style=dotted];
+ 	}
+ 	s -> x1 [weight="1.4", label="c=1"];
+	s -> "xi*" [weight="1.4", label="c=1"];
+	s -> "xj*" [weight="1.4", label="c=1"];
+	s -> xn [weight="1.4", label="c=1"];
+    "yl*" -> "yk*" [weight="1.4", style="dotted", dir="none"];
+    "xi*" -> "xj*" [weight="1.4", style="dotted", dir="none"];
+	x1 -> "xi*" [weight="1.4", style="dotted", dir="none"];
+	"xj*" -> xn  [weight="1.4", style="dotted", dir="none"];
+	"xi*" -> "yl*" [weight="1.4", style="dotted", dir="none"];
+	"xj*" -> "yk*" [weight="1.4", style="dotted", dir="none"];
+	x1 -> y1 [weight="1.4", style="dotted", dir="none"];
+	xn -> ym [weight="1.4", style="dotted", dir="none"];
+	y1 -> "yl*" [weight="1.4", style="dotted", dir="none"];
+	"yk*" -> ym [weight="1.4", style="dotted", dir="none"];
+	y1 -> t [weight="1.4", label="c=1"];
+	"yl*" -> t [weight="1.4", label="c=1"];
+	"yk*" -> t [weight="1.4", label="c=1"];
+	"ym" -> t [weight="1.4", label="c=1"];
+}

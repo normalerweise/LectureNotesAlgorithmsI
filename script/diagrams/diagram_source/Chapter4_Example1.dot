@@ -1,0 +1,21 @@
+graph G {
+	ratio="0.5";
+	fontsize="45";
+	a1;
+	a2;
+	a3;
+	a4;
+	a5;
+	a6;
+	a7;
+	a1 -- a2 [label=" e1", weight="1.4"];
+	a2 -- a3 [label=" e4", weight="1.4"];
+	a3 -- a4 [label=" e7", weight="1.4"];
+	a4 -- a5 [label=" e8", weight="1.4"];
+	a4 -- a6 [label=" e9", weight="1.4"];
+	a5 -- a6 [label=" e10", weight="1.4"];
+	a3 -- a7 [label=" e5", weight="1.4"];
+	a2 -- a7 [label=" e2", weight="1.4"];
+	a1 -- a7 [label=" e3", weight="1.4"];
+	a6 -- a7 [label=" e6", weight="1.4"];
+}
