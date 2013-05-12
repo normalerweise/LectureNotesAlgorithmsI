@@ -4,7 +4,7 @@
   Definition and analyisis of different complexity classes
 \end{descr}
 
-\section{Motivation/Examples}
+\subsection{Motivation/Examples}
 \begin{tabular}{p{5cm}|p{5cm}}
   Solvable in Polinomial Time & NP complete \\
   \hline
@@ -18,7 +18,7 @@
   Football game until 1955 loss 0 points, draw 1 point, win 3 points. The season has already started, is my team still able to win the championchip? & loss 0 points, draw 1 point, win 3 points \\
 \end{tabular}
 
-\section{Introduction}
+\subsection{Introduction}
 \begin{definition}
   P is the class of problems that can be solved in polinomial time.\\
 
@@ -40,7 +40,7 @@ Overview: \\
 \includegraphics[scale=0.3]{diagrams/comp_classes}
 \end{example}
 
-\section{Problem Types/Issues}
+\subsection{Problem Types/Issues}
 
 \begin{tabular}{p{5cm}|p{5cm}}
   \textbf{Decision Problems} & \textbf{Optimization Problems} \\
@@ -67,4 +67,83 @@ If $A$ and $B$ the transformation of $A B$ is an instance of $B$ then $A$ should
 Call this a \deftxt{polynomial reduction}.\\
 If $A \rightarrow B$ and $B$ can be solved in poly. time, then instances of $A$ can be solved in poly. time. \\
 If $A \rightarrow B$ and $A$ is hard to solve, then we may conclude that  $B$ is hard to solve. \\
+\newline
+Lecture of 08.05.13 - beginning: redundancy to former parts? \\
+\\ Consider the following classes: P, NP, NPC \\
+Class $A \xrightarrow{poly} B$ \\
+Instance $\alpha \rightarrow \beta$ \\
 
+\begin{enumerate}[label={\arabic* Observation:}]
+  \item If the instances of the problem B can be solved in poly time, then this is true for instances of A.
+  \item If the instances of A are "hard" to solve, so are the instances of B.
+  \item If A is in NPC and $B \in NP$, then we can conclude B is also in NPC.
+\end{enumerate}
+Problem: To find a first problem class in NPC (St. Cook 1971 3-SAT problem)
+
+\section{Polynomial Time}
+
+\begin{enumerate}[label={\arabic*.}]
+ \item Problem solvable in $O(n^100)$? \\
+       Speed-up theorem of Blum $\rightarrow$ reduce export
+ \item Polynomial time is independent of the computer model
+ \item The class of polynomials is closed with respect to addition, multiplication and compostion.
+ \item Practical reasons.
+\end{enumerate}
+ 
+\begin{definition}[Abstract Decision Problem]
+  An \deftxt{Abstract Decision Problem} is a mapping $\mathbb{Q}:I \rightarrow \{0,1\}$.
+  $I$: is a set of problem instances
+\end{definition}
+
+\begin{example}
+  Is there a path from u to v in the directed graph G of length $\leq$ k $I=\{ (G,u,v,k): k \in \mathbb{N}, G \text{ finite directed Graph, u,v are nodes in G }  \}$ \\
+  $Q( (G,u,v,k) ) = 1$ if $\exists$ path ... and $Q( (G,u,v,k) ) = 0$ otherwise.
+\end{example}
+
+\subsection{Conding and concrete problems}
+
+A \underline{coding} of as set S is a mapping $e: S \rightarrow \{0,1\}$. \\
+A concrete problem is a problem, the instances of which are in \{ 0,1 \}. \\
+$Q: S' \leq \{ 0,1 \} \rightarrow \{ 0,1 \}$ \\
+An algorithm solves a concrete problem in $O(T(n))$ if it delivers the answer for an input x with $\left| x \right| = n$ on $O(T(n))$ steps. \\
+A concrete problem is said to be solvable in polynomial time if there is an algorithm solving it in $O(n^k)$ for some k.\\
+P is the class of concrete problems that can be solved in poly time. \\
+Let $Q:I \rightarrow \{ 0,1 \}$ be an abstract problem and $e:I \rightarrow \{ 0,1 \}^*$ be an encoding.\\
+The resulting concrete problem $Qe: e(I) \rightarrow \{ 0,1 \}$ such that $Q(i) = 1$ iff $Qe(e(i)) = 1 \subseteq
+ \{ 0,1 \}^*$.
+ 
+\begin{example}
+  Consider an algorithm for an abstract problem an $\mathbb{N}$ that needs $\Theta(k)$ steps for input $k \in \mathbb{N}$. \\
+  \underline{encoding e:} $\mathbb{N} \rightarrow \{ 0,1 \}$ $e(k) = 11111$ (k times), then the algorithm is linear in the length of the input. \\
+  \underline{encoding e':} $e'(k)=$binary representation of k length$e'(k) = \left| e'(k) \right| = \log_2 k +1$ (log hat eigentlich so eckige klammern)
+\end{example}
+
+The algorithm with this encoding produces costs exponential in the length $\left| e'(k) \right|$ of the input $f:\{ 0,1 \}* \rightarrow \{ 0,1 \}*$ is said to be compatible in poly time if there is an algorithm that computes $f(x), x \in \{ 0,1 \}*$ in poly time.
+
+Two encodings are called polinomically connected if there are two functions $f_{12}$ and $f_{21}$ with $f_{12}(e_{1}(i)) = e_{2}(i), f_{21}(e_{2}(i)) = e_{1}(i), i \in I$ that are polinomially computable.\\
+
+\begin{lemma}
+  Let $Q$ be an abstract decision problem. \\
+  $Q:I \rightarrow \{ 0,1 \}$ \\
+  $e_{1},e_{2}:I \rightarrow \{ 0,1 \}*$ encodings that are polynomially connected, then $Q_{e_{1}} \in P$ iff $Q_{e_{2}} \in P$
+\end{lemma}
+
+\begin{proof}
+  Steps:
+  \begin{enumerate}
+    \item $Q_{e_{1}}: e_{1}(I) \subseteq \{ 0,1 \}* \rightarrow \{ 0,1 \}$ be solvable in $O(n^k)$ for some k for input of length n
+    \item Let $e_{1}(i)$ be computable from $e_{2}(i)$ in $O(n^c)$ where $n=\left| e_{2}(i) \right|$. \\
+          We want to show, that $Q_{e_{2}} \in P$ to solve $Q_{e_{2}}$ we proceed as follows: \\
+          $Q_{e_{2}}: e_{2}(I) \rightarrow \{ 0,1 \}$ consider $e_{2}(i)$. First determine $e_{1}(i)$ from $e_{2}(i)$ and then run the algorithm for $Q_{e_{1}}$ on the input $e_{1}(i)$.\\
+          The first step costs $O(n^c), n= \left| e_{2}(i) \right|$ and the result is $e_{1}(i)$.\\
+          In th second step the algorithm for $Q_{e_{1}}$ is run on $e_{1}(i), \left| e_{1}(i) \right| = O( \left| e_{2}(i) \right|^c)$. \\
+          It needs $O((n^c)^k) = O(n^{ck})$ \\
+          \newline
+          Sidenote: length $\rightarrow \left| e_{1}(i) \right| \leq O(n^2) \rightarrow P \leq PSPACE$
+  \end{enumerate}
+\end{proof}
+
+\section{Formal Language Representation}
+Let $\epsilon$ be an alphabet (=finite set, the elements are called symbols).\\
+A language over $\epsilon$ is a subset of $\epsilon^*$, $\epsilon^*$ all finite sequences of over $\epsilon$.\\
+$L \leq \epsilon^*$ (Grammar density?)
