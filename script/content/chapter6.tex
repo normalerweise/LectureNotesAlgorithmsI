@@ -235,4 +235,68 @@ f is called a reduction function\\
 
 \vspace{0.3cm}
 The first problem to show NP-complete (remember check for NP $\rightarrow$ check in poly. time if you have a solution): \deftxt{SAT}. Satisfiablility of Boolean Formulas (Cook 1971)\\
-The second problem to show NP-complete: 3-SAT. $\text{SAT} \leq_{p} \text{3-SAT}$
+The second problem to show NP-complete: 3-SAT. $\text{SAT} \leq_{p} \text{3-CNF-SAT}$ \\
+Sidenote:\\
+CNF, Conjunctive Normal Form $\rightarrow (~\vee~\vee~)\wedge(~\vee~\vee~)\wedge(~\vee~\vee~)$ \\
+3-CNF in every bracket three arguments.\\
+Example: $(x_{1} \vee \lnot x_{1} \vee \lnot x_{2})\wedge( x_{3} \vee x_{2} \vee x_{4})\wedge( \lnot x_{1} \vee \lnot x_{3} \vee \lnot x_{4})$ \\
+\vspace{0.3cm}
+\underline{CLIQUE:}\\
+Let $G=(V,E)$ be an undirected graph. $V' \in V$ is called a clique if any two nodes in  $V'$ are connected by an edge. \\
+Size of a clique: number of nodes.\\
+$\text{CLIQUE} = \{ (G,k): G ~ \text{has a clique of size k} \}$
+\vspace{0.3cm}
+Naive Solution: \\
+Given G,k consider all subsets of size k in V, $\left| V \right| = n$. There are  ${n \choose k}$ subsets. For each we have to perform ${k \choose 2}$ checks for edges, all together ${n \choose k} * {k \choose 2}$ steps $ \rightarrow O(n^k)$
+
+\begin{lemma}
+CLIQUE is NP-complete
+\end{lemma}
+\begin{proof}
+  CLIQUE is in NP: Given a set $V', \left| V' \right| = k: \text{check} {k \choose 2} $ times that there is an edge, ${k \choose 2} = O(k^2)$\\
+  CLIQUE is NP-hard: We reduce 3-CNF SAT to CLIQUE. $\text{SAT} \leq_{p} \text{3-CNF-SAT} \leq CLIQUE$ \\
+  So take an arbitrary formula in 3 CNF $\O = C_{1} \wedge ... \wedge C_{r} $, $C_{i} = (l_{1}^i \vee l_{2}^i \vee l_{3}^i )$. We construct a graph $G_{\O}$ such that $G_{\O}$ has a k-CLIQUE iff $G_{\O}$ is satisfiable. \\
+  For each $C_{r}$ we introduce 3 nodes $v_{1}...v_{2}...v_{3}$ corresponding to \\
+  \textbf{ONE SENTENCE MISSING!} \\
+  $V = \{ v_{j}^r, r=1...k, j=1,..3 \}$ E: There is an edge between $v_{i}^r$ and $v_{j}^s$ if 
+  \begin{itemize}
+    \item $r \neq s$
+    \item $l_{i}^r$ is not the negation of $l_{j}^s$
+  \end{itemize}
+\end{proof}
+
+\begin{example}
+  $\Phi = \underbrace{( x_{1} \vee \lnot x_{2} \vee \lnot x_{3})}_{C_{1}} \wedge  \underbrace{( \lnot x_{1} \vee x_{2} \vee x_{3})}_{C_{2}} \wedge  \underbrace{( x_{1} \vee x_{2} \vee \lnot x_{3})}_{C_{3}} $ \\
+  Solution see handout
+\end{example}  
+
+\begin{proof}{CLIQUE is NP-complete cont'd}
+   $\Phi = C_{1} \wedge ... \wedge C_{k}$ $C_{i} = (l_{1}^i \vee l_{2}^i \vee l_{3}^i )$
+   $\Rightarrow$: Let $\varnothing$ be satisfiable let $\alpha$ be an assignment to the variable that makes $\varnothing$ true, then under $\alpha$ each $C_{i}$ must be true. Hence every $C_{i}$ at least one literal must be $\alpha$. Choose from each $C_{i}$ one literal that becomes true under $\alpha$. The corresponding nodes in G from $\alpha$ set $V'$ with $\left| V' \right| = k$ for any two nodes in $V': r \neq s$ and for the corresponding literals we know that one is not the negation of the other beacuase both obtained the truth value under $\alpha$. Hence for any two nodes in $V'$ there is an edge between. Hence $V'$ is a clique. \\
+   $\underbrace{C_{1}}_{(l_{1}^1 \vee l_{2}^1 \vee l_{3}^1 )} \wedge \underbrace{C_{i}}_{(l_{1}^i \vee l_{2}^i \vee l_{3}^i )} \wedge C_{k}$\\
+   $\Leftarrow$: Let $V' \leq V$ be a clique with $\left| V' \right| = k$. As for any two nodes $v_{i}^r, v_{j}^r$ in $V'$ there is an edge between them, we know that $r \neq s$ and $l_{i}^r$ is not the negation of $l_{j}^r$. For every literal that corresponds to a node in $V'$ we put the truth-value true. So independent of the truth value of the remaining variables each $C_{i}$ gets the truth value true and hence $\varnothing$ gets the truth-value true.
+\end{proof}
+
+\vspace{0.5cm}
+\underline{Reduction:} VERTEX-COVER \\
+Let $G=(V;E)$ be an undirected graph. A subset $V' \leq V$ is called a \deftxt{VERTEX-COVER} if every edge $e \in E$ has at least one endpoint in $V'$. The size of a \deftxt{VERTEX-COVER} $V'$ is the number of nodes in $V'$. \\
+VERTEX-COVER=$\{ (G,k) : \text{G has a Vertex-Cover of size k} \}$
+\begin{example}
+  \includegraphics[scale=0.5]{diagrams/vertex_cover}\\
+  a minimal vertex cover: $\{ z,w \}$
+\end{example}
+
+\underline{Statement:} Vertex-Cover is NP-Complete \\
+\begin{enumerate}[label={\arabic*.}]
+  \item VC is in NP: Given a graph G and $k \in \mathbb{N}$ and a set $V'$ we first check if $V'$ has ka elements and go through all edges in E and check if one end point is in $V'$. This can be done in polynomial time.
+  \item To show that VC is NP-hard: Reduce clique to vertex-cover let $G=(V,E)$ be an undirected graph. We conduct a graph $\bar{G}=(V, \bar{E})$ as follows: $\bar{E} = \{ \{ u,v \} : u \neq v ~\text{and}~\{ u,v \} \not\in E \}$ 
+\end{enumerate}
+\includegraphics[scale=0.5]{diagrams/clique_vertex} \\
+Statement: G has a CLIQUE of size k if and only if $\bar{G}$ has a vertex cover of size $\left| V \right|-k$
+
+\begin{proof}
+ $\Rightarrow$: Let G be a graph with a clique $V'. \left| V' \right| = k$. $V \backslash V'$ is a Vertex Cover in $\bar{G}$. We have to show that every edge in $\bar{E}$ has an endpoint in $V \backslash V'$. So let $\{ u,v \} \in \bar{E}$, hence $\{ u,v \} \in E$. At least one of u,v is not in $V'$ hence at least one of u,v $\in V \backslash V'$. So $V \backslash V'$ is a vertex cover.
+ $\Leftarrow$: $\bar{G}=(V,\bar{E})$ and let $V' \subseteq V$ be vertex-cover with $V' = \left| V \right| -k$ we show  $V \backslash V'$ is a (clique of size k).\\
+ Let $(u,v) \in V \backslash V'$: Assume $\{ u,v\} \not\in E$ then $\{ u,v \} \in \bar{E}$ hence as $V'$ is a vertex cover, we know that u or v are in $V'$.\\
+ !!Contradiction: $u,v \in V \backslash V'$
+\end{proof}  
