@@ -122,11 +122,13 @@ The algorithm with this encoding produces costs exponential in the length $\left
 
 Two encodings are called polinomically connected if there are two functions $f_{12}$ and $f_{21}$ with $f_{12}(e_{1}(i)) = e_{2}(i), f_{21}(e_{2}(i)) = e_{1}(i), i \in I$ that are polinomially computable.\\
 
+\begin{samepage}
 \begin{lemma}
   Let $Q$ be an abstract decision problem. \\
   $Q:I \rightarrow \{ 0,1 \}$ \\
   $e_{1},e_{2}:I \rightarrow \{ 0,1 \}*$ encodings that are polynomially connected, then $Q_{e_{1}} \in P$ iff $Q_{e_{2}} \in P$
 \end{lemma}
+\end{samepage}
 
 \begin{proof}
   Steps:
@@ -146,4 +148,91 @@ Two encodings are called polinomically connected if there are two functions $f_{
 \section{Formal Language Representation}
 Let $\epsilon$ be an alphabet (=finite set, the elements are called symbols).\\
 A language over $\epsilon$ is a subset of $\epsilon^*$, $\epsilon^*$ all finite sequences of over $\epsilon$.\\
-$L \leq \epsilon^*$ (Grammar density?)
+$L \leq \epsilon^*$ (Grammar density?)\\
+\newline
+Start lecture on 13.05.2013\\
+\newline
+\textbf{Decidability vs. Acceptance}\\
+$\epsilon$ finite set of symbols, $\epsilon^*$ all finite sequences.\\
+Language is $L \subseteq \epsilon^*$. \\
+Let $Q$ be a concrete decision problem $L = \{ x \in \{ 0,1 \} \} Q(x) = g??$. An algorithm A accepts its output\\
+\textbf{Sentence Missing!!} \\
+A \deftxt{rejects} x if $A(x) = 0$.
+
+A \deftxt{decides} a language $L = \{ x \in \{ 0,1 \}^* \}$ if $A(x) = 1 \forall x \in L$ and $A(x) = 0 \forall x \not\in L$. L is accepted by A in polynomial time, if A accepts L and there is a $k \in \mathbb{N}$, such that for every $x \in L$, if $\left| x \right| = n$ A accepts x $O(n^k)$ with $n \in \mathbb{N}$. 
+
+Algorithm A decides L in polynomial time if there is $k \in \mathbb{N}$ such that if $\left| x \right| = n$ then A decides if $x \in L$ in $O(n^k)$.
+
+Given a programm $P_{r}$ and input y, the question: "Will P terminate?" is \deftxt{undecidable}" \textbf{!important theorem!}.\\
+But there is an algorithm $\{(P_{r},y):P_{r} ~ \text{terminates on y} \}$ that can be accepted. \\
+Now we can defer the class $P=\{ L \subseteq \{ 0,1 \}^*: \exists ~\text{algorithm deciding L in polynomial time} \}$.
+
+\begin{lemma}
+  $P=\{ L \subseteq \{ 0,1 \}^*: \exists ~\text{algorithm that accepts L in polynomial time} \}$.
+\end{lemma}
+
+\begin{proof}
+  Each problem that can be decided (in polynomial time) can be accepted (in polynomial time). Let L be accepted in polynomial time
+  by an algorithm A, that there is a $k \in \mathbb{N}$ such that for each $\left| x \right| = n$ A accepts $x \in L$ in $O(n^k)$.\\
+  So an algorithm deciding L, works as follows:\\
+  Let $x \in \{ 0,1 \}$ with $\left| x \right| = n$ be given. Run algorithm A $O(n^k)$ steps. If it delivers 1 then deliver 1,
+  otherwise 0, beacuse if x was in L, the answer 1 must have been produced with $O(n^k)$ steps.
+\end{proof}
+
+
+\section{Polynomial Verification}
+A verification algoritm is an algorithm with two input parameters $A(x,y)$. \\
+A verifies x if there is a y with $A(x,y) = 1$.\\
+Y is called a certificate.\\
+$L=\{ x \in \{ 0,1 \}^*: \exists ~ y \in \{ 0,1 \}^*:~A(x,y)=1\}$ the langugage verified by A.\\
+
+A language belongs to the class NP if there is a polynomial time verification algorithm A and a constant c such that: \\
+$L=\{ \underbrace{x \in \{ 0,1 \}^*}_{\text{a graph}}: \underbrace{\exists y}_{\text{Hamiltonian Cycle}} ~\text{with}~ \left|y \right|=O(\left| x \right|^c) ~\text{and}~ \underbrace{A(x,y)=1}_{\text{algo that shows that y is a Hamiltonian Cycle}}\}$  \\
+We say A verifies L in polynomial time.\\
+\vspace{0.3cm}
+Some complexity classes and their relationships:\\
+$\text{co-NP} = \{ L: \epsilon^* \backslash L \in NP  \}$\\
+$\text{co-AnyClass} = \{ L: \epsilon^* \backslash L \in \text{AnyClass} \}$
+So far proofen or not:\\
+$P \subseteq NP$ \\
+$P \stackrel{?}{=} NP$ \\
+$P \stackrel{?}{=} \text{co-NP} \cap \text{NP}$ \\
+$\text{co-NP} \stackrel{?}{=} NP$ \\
+
+\section{NP-completeness and reducability}
+$L_{1}$ is reducable in polynomial time to $L_{2}$ ($L_{1} \leq_{p} L_{2}$) if there is a function f computable in poly. time
+with: \\
+$x \in L ~\text{iff}~ f(x) \in L_{2} ~f:\{ 0,1 \}* \rightarrow \{ 0,1 \}*$\\
+f is called a reduction function\\
+\includegraphics[scale=0.5]{diagrams/reductions}
+
+\begin{lemma}
+  $L_{1}, L_{2} \in \{ 0,1 \}^*$ and $L_{1} \leq_{p} L_{2}$.\\
+  If $L_{2} \in P$ then $L_{1} \in P$.
+  \vspace{0.3cm}
+  $L \in \{ 0,1 \}^*$ is called \deftxt{NP-complete} (NPC) if
+  \begin{enumerate}
+    \item $L \in NP$
+    \item $L' \leq_{p} L \forall L' \in NP$
+  \end{enumerate}
+  If L satisfies ii) L is called \deftxt{NP-hard}.\\
+  $\text{NPC} = \{ L: ~ \text{L is NP-complete} \}$
+\end{lemma}
+
+\begin{lemma}
+  If some L in NPC can be solved in polynomial time, then $P=NP$.\\
+  If there is a $L \in NP$ that cannot be solved in poly. time then no problem in NPC can be solved in polynomial time.
+\end{lemma}
+
+\begin{lemma}
+  If $L' \in \text{NPC}$ and $L' \leq_{p} L$ the $L$ is NP-hard.
+\end{lemma}
+
+\begin{proof}{}
+ $L' \in NPC$ and $\forall L'' \in NP$ it holds $L'' \leq_{p} L'$ $L' \leq_{p} L$ \\
+ $">"$ $\forall L'' \in \text{NP}$ $L'' \leq_{p} L$
+\end{proof}
+
+\vspace{0.3cm}
+The first problem to show NP-complete (remember check for NP $\rightarrow$ check in poly. time if you have a solution): \deftxt{SAT}. Satisfiablility of Boolean Formulas (Cook 1971)\\
+The second problem to show NP-complete: 3-SAT. $\text{SAT} \leq_{p} \text{3-SAT}$
