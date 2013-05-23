@@ -1,0 +1,16 @@
+graph G {
+	ratio="1.0";
+	fontsize="45";
+	v1;
+	v2;
+	v3;
+	v4;
+	v5;
+	v6;
+	v1 -- v2 [label=" in M", weight="1.0"];
+	v2 -- v3 [label=" in M'", weight="1.0"];
+	v3 -- v4 [label=" in M", weight="1.0"];
+	v4 -- v5 [label="in M'", weight="1.0"];
+	v5 -- v6 [label=" in M", weight="1.0"];
+	v6 -- v1 [label=" in M'", weight="1.0"];
+}
