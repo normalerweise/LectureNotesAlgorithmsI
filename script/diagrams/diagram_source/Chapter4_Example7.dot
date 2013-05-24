@@ -1,0 +1,14 @@
+graph G {
+	ratio="0.5";
+	fontsize="45";
+	rankdir="LR";
+	v1;
+	v2;
+	v3;
+	v4;
+	v5;
+	v1 -- v2 [label=" e1: not in M"];
+	v2 -- v3 [label=" e2: in M"];
+	v3 -- v4 [label=" e3: not in M"];
+	v4 -- v5 [label=" e4: in M"];
+}

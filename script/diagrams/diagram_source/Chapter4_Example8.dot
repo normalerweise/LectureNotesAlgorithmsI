@@ -1,0 +1,11 @@
+graph G {
+	ratio="0.4";
+	fontsize="45";
+	"v2j-1";
+	v2j;
+	vk;
+	vl;
+	"v2j-1" -- v2j [label=" e' in p, not in M"];
+	v2j -- vk [label=" e in M, not in p"];
+	v2j -- vl [label=" e'' in M"];
+}

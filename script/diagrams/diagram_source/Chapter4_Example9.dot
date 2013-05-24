@@ -1,0 +1,18 @@
+graph G {
+	ratio="0.5";
+	fontsize="45";
+	rankdir="LR";
+	v1;
+	v2;
+	v3;
+	v4;
+	v5;
+	v6;
+	v7;
+	v1 -- v2 [label=" in M"];
+	v2 -- v3 [label=" in M'"];
+	v3 -- v4 [label=" in M"];
+	v4 -- v5 [style="dotted"];
+	v5 -- v6 [label=" in M'"];
+	v6 -- v7 [label=" in M"];
+}
