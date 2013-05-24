@@ -22,7 +22,7 @@ A graph is a \deftxt{euler graph} if it has a euler path.
 \begin{theorem}
     A finite connected graph is a euler graph if and only if:
     \begin{enumerate}
-        \item It ha eiter exactly two nodes of odd degree.
+        \item It has eiter exactly two nodes of odd degree.
         or
         \item All nodes have even degree.
     \end{enumerate}
@@ -34,7 +34,7 @@ Check is possible in linear time.
 \begin{prooof}
     $">"$ Let $G=(V,E)$ be a graph that has a euler path that is not a cycle. Let $\mid E \mid=k$
     $\circ  \xrightarrow{e_{1}} \circ \xrightarrow{e_{2}} ... \circ \xrightarrow{e_{k}}$
-    In this path $v_{1}$ and $v_{k+1}$ have od degreee and all other nodes have even degree. 
+    In this path $v_{1}$ and $v_{k+1}$ have odd degreee and all other nodes have even degree. 
     Now consider the case teht $G$ has a euler cycle.\\
     \includegraphics{diagrams/proof21.png} \\
     Hence every node has even degree. \\[2mm]
@@ -60,7 +60,7 @@ Directed \deftxt{Euler cycle} analogously.\\
 \begin{theorem}
     A finite directed graph is a \deftxt{directed Euler graph} if and only if its underlying undirected graph is connected.
     \begin{enumerate}
-       \item There is one node $a$ with $g_{out}(a) = g_{in}(a) + 1$ and another node $b g_{out}(b) = g_{in}(b) + 1$ and
+       \item There is one node $a$ with $g_{out}(a) = g_{in}(a) + 1$ and another node\\ b with $g_{in}(b) = g_{out}(b) + 1$ and
              for all other nodes $v g_{in}(v) = g_{out}(v)$. Or
        \item For all nodes $g_{in}(v) = g_{out}(v)$ (\deftxt{directed Euler cyle})
              

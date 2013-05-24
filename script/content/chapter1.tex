@@ -3,13 +3,15 @@
 \begin{descr}
 \end{descr}
 
-
+\section{Undirected Graphs}
 \begin{definition}
 	An undirected graph is a pair G=(V, E) where V is a set of nodes and E is a set of edges, together with a function i: E $\rightarrow \gamma(v)$ such that 0 < $\mid i(e) \mid  \le $ 2.
 \\
-If u,v i(e) we call u,v endpoints of e. If V and E are a finite set we call G a finite graph. If i($e{_1}$) =  i($e{_2}$) we call  $e{_1}$, $e{_2}$ parallel edges.
-
-If $\mid i(e) \mid = 1$ we call e a loop. The degree of a node v is the number of edges for which v is an endpoint where loops a counted twice.
+If u,v i(e) we call u,v endpoints of e. \\
+If V and E are a finite set we call G a finite graph. \\
+If i($e{_1}$) =  i($e{_2}$) we call  $e{_1}$, $e{_2}$ parallel edges.\\
+If $\mid i(e) \mid = 1$ we call e a loop. \\
+The degree of a node v is the number of edges for which v is an endpoint where loops a counted twice.\\
 Is the degree of v = 0 then we call v isolated.
 \end{definition}
 
@@ -23,11 +25,11 @@ Is the degree of v = 0 then we call v isolated.
 
 
 \begin{prooof}
-    $\sum\limits_{i=1}^n degree(v{_i}) = 2* \mid E \mid$ \\
+    $\sum\limits_{i=1}^n degree(v_{i}) = 2* \mid E \mid$ \\
 This is because we start with a graph, where each node is isolated. Then we insert one edge after another.\\
 Case 1: i(e) = {x} then the degree of x is increased by 2\\
 Case 2: i(e) = {x, y} then the degree of x and y are increased by 1\\
-We asume that $v{_1}...v{_i}$ have an even degree and $v{_i+1}...v{_n}$ have odd degree.\\
+We asume that $v_{1}...v_{i}$ have an even degree and $v_{i+1}...v_{n}$ have odd degree.\\
 
 $\sum\limits_{k=1}^i degree(v{_k}) + \sum\limits_{k=i+1}^n degree(v{_k}) = 2 \mid E \mid$\\
 
@@ -41,10 +43,11 @@ $ 2 \mid E \mid$ is an even number \\
 
 
 \begin{definition}
-    If G=(V,E) is a graph and $v{_1}, v{_2} \in V$ with $i(e) = \{v1, v2\}$ then we say that $v{_1}, v{_2}$ are neighbours. A path in G is a sequence of edges $e{_1}, e{_2}, ...$ such that: \\
+    If G=(V,E) is a graph and $v{_1}, v{_2} \in V$ with $i(e) = \{v_1, v_2\}$ then we say that $v{_1}, v{_2}$ are neighbours. \\
+    A path in G is a sequence of edges $e{_1}, e{_2}, ...$ such that: \\
 \begin{enumerate}
-\item $e{_i}, e{_i+1}$ share an endpoint
-\item if $e{_i}$ is not a loop and neither the first nor the last edge. Then $e{_i}$ shares one endpoint with $e{_i-1}$ and the other with $e{_i+1}$ [MS: does this make sense? sounds strange!]
+\item $e{_i}, e_{i+1}$ share an endpoint
+\item if $e{_i}$ is not a loop and neither the first nor the last edge. Then $e{_i}$ shares one endpoint with $e_{i-1}$ and the other with $e_{i+1}$ [MS: does this make sense? sounds strange!][NW: Yes, draw it]
 \end{enumerate}
 \end{definition}
 
@@ -57,7 +60,8 @@ $v{_0}$ is called start point and $v{_i}$ is called end point. The length of the
 \\
 A cycle (circle) is a path where the end point coincide with the start point.\\
 A path is called simple if every node in $V$ occures at most once.\\
-A cycle of length $\not = 2$ is called simple if every node except of the start/end node occurs at most once. A cycle of length 2 ($e{_1}$, $e{_2}$) is called simple if $e{_1} /not = e{_2}$ and if each node except for the start/end node occurs at most once.
+A cycle of length $\neq 2$ is called simple if every node except of the start/end node occurs at most once. \\
+A cycle of length 2 ($e{_1}$, $e{_2}$) is called simple if $e{_1} \neq e{_2}$ and if each node except for the start/end node occurs at most once.
 
 \begin{example*}
 \includegraphics[scale=0.4]{diagrams/Chapter1_Example3}
@@ -89,7 +93,7 @@ Real-Life examples where seperation points are important are in computer network
 \end{example*}
 
 \begin{definition}
-    Let $G = (V,E)$ be a graph without loops. If there exists $V_{1}, V_{2} \leq V$ and $V_{1} \cup V_{2} = V$
+    Let $G = (V,E)$ be a graph without loops. If there exists $V_{1}, V_{2} \subseteq V$ and $V_{1} \cup V_{2} = V$
     such that $V_{1} \cap V_{2} = \emptyset$ and every edge $e$ has one endpoint in $V{_1}$ and the other in $V_{2}$,
     then we call $G$ a \deftxt{bipartite}.
 \end{definition}
@@ -120,9 +124,10 @@ $g_{in}(v)$ is the number of edges with endpoint $v$.
     Each edge contributes 1 to both sides of the equation.
 \end{prooof}
 
+\section{Directed Graphs}
 \begin{definition}
     A directed path is a sequence of edges $e_{1},e_{2}...$ such that the end point of $e_{i}$ is the start point of
-    $e_{1} +1, i > 1$([NW] +1 seems strange to me, correct?). \\[3mm]
+    $e_{i+1}$\\[3mm]
 
     A directed path $e_{1}...e_{k}$ is called a (directed) \underline{cycle}, if the start point of $e_{1}$ and
     the end point of $e_{k}$ coincide. \\
@@ -149,7 +154,7 @@ The equivalence classes of this relation $~c VxV$ are called strongly connected 
     We should know how the following terms are defined: reflexivity, symetry, transitivity.
 \end{information}
 
-Implementation: \\
+\section{Implementation of Graphs on Computers}
 1. Adjacency Lists $V = {1...n}, E = {e_{1}...e_{t}}$ \\
 \includegraphics{diagrams/adjacency_list.png} \\
 2. Dynamically changing graphs: \\
@@ -159,6 +164,7 @@ Graph is used to detect dead locks. Waiting arises when data are locked by a use
 $U_{1}$ $write(d)$, $read(d')$ \\
 $U_{2}$ $read(d)$, $write(d')$
 
+\section{Trees}
 \begin{definition}
     An undirected graph is called a tree if it is connected and does not have simple cycles.\\
     Let $G$ be a directed graph, $G=(V,E)$. A node $r$ is called root if every other node can be 
@@ -171,7 +177,7 @@ $U_{2}$ $read(d)$, $write(d')$
     NW: what was lemma 1.3? the next one was 1.4 in my notes
 \end{lemma}
 \begin{lemma}
-    If $G=(V,E)$ is a directed graph without directed cycles, then tere is always a source and sink.
+    If $G=(V,E)$ is a directed graph without directed cycles, then there is always a source and sink.
 \end{lemma}
 We use this theorem to detect cycles
 
