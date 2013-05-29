@@ -63,3 +63,44 @@ and \\
 $O(n * c{_I} +  n *  c{_E} )$ if n people are hired \\
 worst case: if candidates show up in the order: worst first, \ldots best last
 
+
+\textbf{Indicator Variable}
+Let S be a set and $A \subseteq S$ and execute the indicator variable.\\
+
+$ X(s)=\left\{\begin{array}{cl} 1, if s\in A \\ 0, else \end{array}\right .$
+
+$E[x{_1}] = \sum\limits_{x} x Pr(X{_A}=x) = Pr(A)$
+
+\textbf{Example}
+Throw a coin n times.
+$ X(s)=\left\{\begin{array}{cl} 1, \mbox{ if in the i-th throwing head is shown} \\ 0, \mbox{  otherwise } \end{array}\right .$
+
+$S = {(a{_1},\ldots,a{_n}) : a{_i} \in {H,N}}$,
+Let X be the random variable that describes how often ``H'' appears when you throw n-times.
+
+$X:\{H,N\}^n \rightarrow \mathbb{N}$
+$X=\sum x{_i}$
+
+The expected number of ``H''\\
+
+$E[X] = E[\sum x{_i}] = \sum\limits_{i=1}^n E[x{_i}] = \sum\limits_{i=1}^n \frac{1}{2} = \frac{n}{2}$
+
+\textbf{Example Hiring:}\\
+
+$ X{_i} = \left\{\begin{array}{cl} 1, \mbox{ if the candidate is hired} \\ 0, \mbox{  else } \end{array}\right .$
+
+$X= \sum\limits_{i=1}^n x{_i}$ describs how many candidates are hired\\
+
+$E[X] =  E[\sum\limits_{i=1}^n x{_i}] = \sum\limits_{i=1}^n E[x{_i}]$\\
+
+$E[X{_i}] = $ Probability that the i-th candidate is hired.
+
+
+Candidate i is hired if this person is better than the first i-1 candidates. If the order in which people are chosen is random, each of the first i candidates is the best with same probability.
+So $E[x{_i}] =\frac{1}{i}$\\
+$E[X] =  \sum\limits_{i=1}^n \frac{1}{i} = \ln n + O(1)$ 
+
+
+
+
+
