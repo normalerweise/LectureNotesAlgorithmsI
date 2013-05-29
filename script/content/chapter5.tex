@@ -179,10 +179,15 @@ Let f be  flow function with total flow $F=w$ and let f be cost minimal. Let p b
 
 we associate with each edge e a lower bound $b(e)$ and request for the flow function additionally that:\\
 $b(e) <= f(e)$\\
-A flow function obeying this additional constraint is called \underline{legal flow function}.
+A flow function obeying this additional constraint is called \underline{legal flow function} (see \ref{fig:no_legal_flow}).
 
 \begin{example}
-Graphic of no legal flow missing
+\begin{figure}[t]
+\centering
+\includegraphics[scale=0.4]{diagrams/chapter_5_2_no_legal.png}
+\caption{No legal flow possible for b(e)/c(e)}
+\label{fig:no_legal_flow}
+\end{figure}
 \end{example}
 
 To answer the question if there is a legal flow for a network with lower/upper bounds we proceed on follows. Construct the Graph $\Bar{G} = (\Bar{V},\Bar{E})$.
