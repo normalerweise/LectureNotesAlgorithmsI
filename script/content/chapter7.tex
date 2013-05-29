@@ -43,21 +43,25 @@ we look for a minimal set $V'$ of nodes such that each edge has at least one end
 \end{algorithm}
 
 
+\section{Probabilistic Analysis and randomized algorithms}
 
+\textbf{Assistant search}
+\begin{enumerate}
+  \item[1] best = 0
+  \item[2] for i = 1 .... n do\\
+\noindent\hspace*{10mm}	interview candidate i\\
+\noindent\hspace*{10mm}	if candidat i is better than best\\
+\noindent\hspace*{20mm}		then best:= i\\
+\noindent\hspace*{20mm}		employ candidate i (fire previous candidate)\\
+\end{enumerate}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+\underline{Analysis} of the cost that arise from interviews and hiring.\\
+cost of an interview $c{_I}(low)$\\
+cost of hiring: $c{_E}(high)$\\
+Cost that arise in the worst case $O(n* c{_I} +  m * c{_E}$ ) if m people are hired 
+and \\
+$O(n * c{_I} +  n *  c{_E} )$ if n people are hired \\
+worst case: if candidates show up in the order: worst first, \ldots best last
 
 
 
@@ -77,7 +81,8 @@ Given the list of the n candidates, use random numbers to select a candidate for
 $RANDOM(a,b)$ produces an integer z with  $a \leq z \leq b$ where all numbers in this interval are equally probable. 
 $RANDOM(0,1)$ produces 0 or 1 with equal probability $\frac{1}{2}$
 $RANDOM(3,7)$ produces 4 with probability $\frac{1}{5}$ \\
-
+\end{example}
+  
 \textbf{Randomized-Assistant Search}
 \begin{enumerate}[label={\arabic*.}]
  \item Permute the list of candidates using a  random number generator
@@ -90,15 +95,15 @@ The expected cost for hiring using the randomized assistant search algorithm is 
 $O( c_E * \ln n + C_I * n)$
 \end{lemma}
 How to randomize an in input of n elements [A[1...n]]? \\
-PERMUTE–BY–SORTING(A) \\
+PERMUTE-BY-SORTING(A) \\
 1.	n = length(A) \\
 2.	for i = 1...n do \\
 3.	P[i] = RANDOM [1, $n^3$] (something arbitrary bigger than n) \\
 4.	Sort the array A using P as sort keys \\
 5.	return A \\
 \newline
-RANDOMIZE–IN–PLACE(A) \\
-1.	n = length (A) \\
-2.	for i= 1 …. n do \\
+RANDOMIZE-IN-PLACE(A) \\
+1.	n = length(A) \\
+2.	for i= 1...n do \\
 3.	  swap A[i] $\Leftrightarrow$  A[RANDOM(i,n)] \\
 
