@@ -42,7 +42,6 @@ we look for a minimal set $V'$ of nodes such that each edge has at least one end
 \caption{APPROX-VERTEX-COVER($G=(V,E)$)}
 \end{algorithm}
 
-
 \section{Probabilistic Analysis and randomized algorithms}
 
 \textbf{Assistant search}
@@ -62,7 +61,6 @@ Cost that arise in the worst case $O(n* c{_I} +  m * c{_E}$ ) if m people are hi
 and \\
 $O(n * c{_I} +  n *  c{_E} )$ if n people are hired \\
 worst case: if candidates show up in the order: worst first, \ldots best last
-
 
 \textbf{Indicator Variable}
 Let S be a set and $A \subseteq S$ and execute the indicator variable.\\
@@ -101,6 +99,46 @@ So $E[x{_i}] =\frac{1}{i}$\\
 $E[X] =  \sum\limits_{i=1}^n \frac{1}{i} = \ln n + O(1)$ 
 
 
+\begin{lemma}
+If the order in which the candidates appear is random then the average cost of finding a suitable employee is
+$ O( c_E *  \ln n + C_I * n)$
+\end{lemma}
 
+\textbf{Question:}
+How can we know that the order is random ?\\
 
+\subsection{Randomized Algorithms}
+In order to guarantee randomness of the input, we randomize it. 
+
+\begin{example}{Hiring}
+Given the list of the n candidates, use random numbers to select a candidate for an interview.
+$RANDOM(a,b)$ produces an integer z with  $a \leq z \leq b$ where all numbers in this interval are equally probable. 
+$RANDOM(0,1)$ produces 0 or 1 with equal probability $\frac{1}{2}$
+$RANDOM(3,7)$ produces 4 with probability $\frac{1}{5}$ \\
+\end{example}
+  
+\textbf{Randomized-Assistant Search}
+\begin{enumerate}[label={\arabic*.}]
+ \item Permute the list of candidates using a  random number generator
+ \item best = 0
+ \item ... as before
+\end{enumerate}
+
+\begin{lemma}
+The expected cost for hiring using the randomized assistant search algorithm is \\
+$O( c_E * \ln n + C_I * n)$
+\end{lemma}
+How to randomize an in input of n elements [A[1...n]]? \\
+PERMUTE-BY-SORTING(A) \\
+1.	n = length(A) \\
+2.	for i = 1...n do \\
+3.	P[i] = RANDOM [1, $n^3$] (something arbitrary bigger than n) \\
+4.	Sort the array A using P as sort keys \\
+5.	return A \\
+\newline
+RANDOMIZE-IN-PLACE(A) \\
+1.	n = length(A) \\
+2.	for i= 1...n do \\
+3.	  swap A[i] $\Leftrightarrow$  A[RANDOM(i,n)] \\
+>>>>>>> 537543df52b95855cfa2f207fc7482bd87d8b8b6
 
