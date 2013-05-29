@@ -41,3 +41,25 @@ we look for a minimal set $V'$ of nodes such that each edge has at least one end
 \end{algorithmic}
 \caption{APPROX-VERTEX-COVER($G=(V,E)$)}
 \end{algorithm}
+
+
+\section{Probabilistic Analysis and randomized algorithms}
+
+\textbf{Assistant search}
+\begin{enumerate}
+  \item[1] best = 0
+  \item[2] for i = 1 .... n do\\
+\noindent\hspace*{10mm}	interview candidate i\\
+\noindent\hspace*{10mm}	if candidat i is better than best\\
+\noindent\hspace*{20mm}		then best:= i\\
+\noindent\hspace*{20mm}		employ candidate i (fire previous candidate)\\
+\end{enumerate}
+
+\underline{Analysis} of the cost that arise from interviews and hiring.\\
+cost of an interview $c{_I}(low)$\\
+cost of hiring: $c{_E}(high)$\\
+Cost that arise in the worst case $O(n* c{_I} +  m * c{_E}$ ) if m people are hired 
+and \\
+$O(n * c{_I} +  n *  c{_E} )$ if n people are hired \\
+worst case: if candidates show up in the order: worst first, \ldots best last
+
