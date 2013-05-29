@@ -1,6 +1,7 @@
 \chapter{Approximation Algorithms}
 An algorithm for an optimization problem that yields a ``nearly''
-optimal solution is called an approximation algorithm.
+optimal solution is called an approximation algorithm.\\
+\emph{Quality of Approximation}\\
 $0<C_{n}*$ cost of an optimal solution for an input of size
 $n$ (e.g. length of a shortest path). $0<C_{n}$ cost of a solution
 produced by an approximation algorithm. If 
@@ -41,6 +42,61 @@ we look for a minimal set $V'$ of nodes such that each edge has at least one end
 \end{algorithmic}
 \caption{APPROX-VERTEX-COVER($G=(V,E)$)}
 \end{algorithm}
+
+\begin{enumerate}
+  \item $\{b,c\}$ Remove from $E'$: $\{b,a\}, \{c,d\}, \{c,e\}, \{b,c\}$
+  \item $e,f\}$ Remove from $E'$: $\{e,f\}, \{e,d\}, \{d,f\}$
+  \item $\{d,g\}$ $c=\{b,c,e,f,d,g\}$, $E'=\emptyset$ twice as big as the optimum one.
+\end{enumerate}
+
+\begin{theorem}
+APPROX-VERTEX-COVER is a polynomial time 2-approximation ($\rho(n)$) algorithm. 
+\end{theorem}
+\begin{proof}
+1. The algorithm runs in polynomial time in the size of the input $G=(V,E)$, because every edge and every node is inspected at 
+most once.\\
+2. Let $A$ be the set of edges chosen in line 4 of the algorithm. In order to cover the edges in $A$, each vertex cover for $G$, in particular
+an optimal vertex cover $c*$, must contain at least one endpoint of each edge in $A$. No two edges in $A$ share an end point. Hence no
+two edges in $A$ are covered by the same node in $c*$, hence $|c*|\ge |A|$. In line 4 an edge is chosen, the endpoints of which are not in $C$ and
+hence:\\$|C| = 2|A| = 2|c*|$, where $C$ is the calculated set cover and $c*$ is the optimal vertex cover.
+\end{proof}
+\subsection{Traveling Salesman}
+Given a complete undirected graph $G=(V,E)$ and a cost function $c:V \times V \gets \mathbb{N}$,
+find a cycle which visits every node exactly once and is of least cost, where : Let $A \subseteq E$ then
+$cost(A) = \sum\nolimits_{e \in A} c(e)$\\
+c satisfies the triangle inequality if $c(u,v) \le c(u,v) + c(v,w)$ for any $v,u,w$.
+\begin{example*}
+\includegraphics[width=\textwidth]{diagrams/Chapter7_Example2.pdf}
+\end{example*}
+\begin{algorithm}
+\begin{algorithmic}[1]
+\State Chose a node $r \in V$.
+\State Calculate the minimum cost spanning tree starting from r using Prim's algorithm.
+\State Let $H$ be the list of nodes that is obtained traversing the tree T in preorder.
+\State \Return{H}
+\end{algorithmic}
+\caption{APPROX-TSP-TOUR($G=(V,E), c$)}
+\end{algorithm}
+\begin{theorem}
+APPROX-TSP-TOUR is a polynomial time 2-approximation algorithm for TSP satisfying the triangle inequality.
+\end{theorem}
+\begin{proof}
+1. Polynomial cost: Because Prim and preorder have polynomial cost.\\
+2. Let $H*$ be an optimal tour for $G$. We remove one edge in this cycle, the result is a spanning tree for $G$, called $\widetilde{T}$. 
+The $cost(\widetilde{T}) \le cost(H*)$ because $c(e) \ge 0$. A \underline{full preorder run} through a tree is obtained if, after visiting a subtree of $x$,
+$x$ is visited again.
+\end{proof}
+\begin{example*}
+a b c b h b a d e f e g e d a
+\end{example*}
+Every edge of the tree $T$ occurs twice in this list. (TSP tree of Prim).\\
+$c(W) = 2*c(T) \le 2 * c(\widetilde{T}) \le 2 * cost (H*)$\\
+$W$ visits nodes more than once. We remove these repeated visits and use the triangle inequality to
+estimate the costs.\\
+a b c a h $\ldots \: \leadsto$ a b c h \ldots\\
+The result: a b c h d e f g.\\
+This is the preorder-run through $T$.
+$\epsilon_{S}(H) \le Cost(W) \le 2 * cost(H*)$ where $\epsilon_{S}(H)$ is the result of the algorithm and $H*$ is optimal.
 
 \section{Probabilistic Analysis and randomized algorithms}
 
